@@ -1,7 +1,7 @@
 # Site settings
 title: Code Base Camp
 SEOTitle: Coding Guides, Tutorials and Help | CodeBaseCamp
-header-img: img/home-bg.jpg
+header-img: img/material-banner.png
 email: tom@hypnosstudios.com
 description: "Code help, tutorials, guides, tips"
 keyword: "code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java"
@@ -59,7 +59,7 @@ disqus_username: @disqus_lS23LiLpVi
 
 
 # Analytics settings
-# Baidu Analytics 
+# Baidu Analytics
 # ba_track_id: [your track id]
 
 # Google Analytics
@@ -92,5 +92,5 @@ friends: [
     {
         title: "Hypnos Studios",
         href: "http://www.hypnosstudios.com/"
-    } 
+    }
 ]
