@@ -1,7 +1,7 @@
 # Site settings
 title: Code Base Camp
 SEOTitle: Coding Guides, Tutorials and Help | CodeBaseCamp
-header-img: img/material-banner.png
+header-img: "img/material-banner.jpg"
 email: tom@hypnosstudios.com
 description: "Code help, tutorials, guides, tips"
 keyword: "code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java"
@@ -43,15 +43,15 @@ gems: [jekyll-paginate]
 # document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
+input: GFM                            # use Github Flavored Markdown !important
 
 
 
 # Disqus settings
-disqus_username: @disqus_lS23LiLpVi
+disqus_username: disqus_lS23LiLpVi
 
 # Duoshuo settings
-# duoshuo_username: huxblog
+# duoshuo_username:
 # Share component is depend on Comment so we can NOT use share only.
 # duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
