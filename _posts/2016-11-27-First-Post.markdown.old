@@ -1,0 +1,73 @@
+---
+layout:     post
+title:      "Hello 2015"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2016-11-27 12:30:00
+author:     "Tom"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - General
+---
+
+> “This is a quote”
+
+
+## This is a Section Title
+
+# This is a subtitle??
+
+This is some text
+
+[Link to next Section ](#build)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non tincidunt odio. Nunc quis est nec dui convallis tempor. Proin tristique, erat ut tincidunt fringilla, elit enim malesuada quam, ac vehicula elit ex a urna. Fusce et risus orci. Nunc rutrum odio a diam bibendum, congue imperdiet ipsum faucibus. Ut porta arcu a mauris ultricies consectetur. Quisque dignissim imperdiet augue id rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc porttitor vulputate volutpat. Suspendisse vitae consectetur ex. Suspendisse blandit ante sit amet vehicula accumsan. Curabitur non ornare massa. Curabitur dignissim placerat risus, nec congue leo. Aliquam a iaculis metus. Sed maximus viverra justo et hendrerit. Ut eget purus lorem.
+
+Fusce suscipit dapibus tortor ut maximus. Proin sed volutpat erat. Cras luctus venenatis nisl, non aliquet enim suscipit nec. Morbi pretium risus sed sem finibus fringilla. Ut et metus mollis, sodales nulla sit amet, consequat lorem. Integer at metus sem. Quisque a neque sapien. Suspendisse potenti. Cras in odio nec ligula fringilla semper quis sit amet enim. In mattis, ligula sit amet volutpat pulvinar, augue risus faucibus orci, in consectetur velit leo ut felis.
+
+[HyperLink to another site](http://google.com)
+
+
+<p id = "build"></p>
+---
+
+## Section 2
+
+This is a bullet list：
+
+* Item 1
+* Item 2 **Bold Text**
+* Item 3
+	* Nested Item
+* Item 4
+
+More Text goes here.
+
+
+
+---
+
+Text after line break
+
+In-line code quote block `gem install jekyll`.
+
+Full Code Block Example:
+
+```css
+/* iPad Air or iPad Mini */
+(device-width: 768px) and (width: 320px)
+/* iPad Pro */
+(device-width: 1024px) and (width: 320px)
+```
+
+
+## Section 3
+
+More text here
+
+Image example:
+
+![Force Events](http://www.mobilexweb.com/wp-content/uploads/2015/09/foceevents.png)
+
+
+—— Tom 2015.11
