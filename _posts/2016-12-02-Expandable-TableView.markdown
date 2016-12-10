@@ -1,10 +1,11 @@
 ---
 layout:     post
 title:      "iOS Expandable Table View Cells"
-subtitle:   "Expanding TableView Cells via Cell insertion and deletion."
+subtitle:   "Expanding TableView Cells using Cell insertion and deletion."
 date:       2016-12-02 12:30:00
 author:     "Tom"
-header-img: "img/post-bg-2015.jpg"
+header-img: "img/2016-12-02_cover.jpg"
+header-mask: 0.5
 catalog: true
 tags:
     - iOS
@@ -12,6 +13,8 @@ tags:
 ---
 
 # Overview
+
+<p align="center"><iframe src='https://gfycat.com/ifr/MadeupShortFirefly' frameborder='0' scrolling='no' width='320' height='570' style="display:block" allowfullscreen></iframe></p>
 
 The following is an implementation for creating an expanding TableView cell effect by insertion and deletion of cells.
 
