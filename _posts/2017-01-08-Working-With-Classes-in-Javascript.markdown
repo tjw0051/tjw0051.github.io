@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Working with Classes and Events in node.js Javascript"
+title:      "Classes and Events in node.js"
 subtitle:   "Exporting classes, receiving events, emitting events."
 date:       2017-12-02 12:30:00
 author:     "Tom"
@@ -29,7 +29,7 @@ function CarClass (constructorVariable) {
 
 CarClass.prototype.protoMethod = function() {
     return this.internalVariable;
-};
+}
 ```
 
 The same class defined in ES6 could look like this:
@@ -174,7 +174,7 @@ Say we wanted to print the name of the car from inside the testCar.on callback. 
     }
 ```
 
-However, this won't print the name of the enclosing vehicle, because `this` references to the closure object, not the outside class. Therefore we need to store a reference to the enclosing class so that we can access it from within the closure:
+However, this won't print the name of the enclosing vehicle, because the scope of `this` is limited to within the closure, and cannot access the outside class. Therefore we need to store a reference to the enclosing class so that we can access it from within the closure:
 
 ```javascript
  constructor(name) { // mclaren
