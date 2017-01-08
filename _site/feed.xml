@@ -3,10 +3,10 @@
   <channel>
     <title>Code Base Camp</title>
     <description>Code help, tutorials, guides, tips</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 10 Dec 2016 15:09:57 +0000</pubDate>
-    <lastBuildDate>Sat, 10 Dec 2016 15:09:57 +0000</lastBuildDate>
+    <link>https://www.codebasecamp.com/</link>
+    <atom:link href="https://www.codebasecamp.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sun, 08 Jan 2017 22:18:59 +0000</pubDate>
+    <lastBuildDate>Sun, 08 Jan 2017 22:18:59 +0000</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
@@ -501,8 +501,8 @@
 &lt;p&gt;—— Tom 2015.11&lt;/p&gt;
 </description>
         <pubDate>Fri, 02 Dec 2016 12:30:00 +0000</pubDate>
-        <link>http://localhost:4000/2016/12/02/Expandable-TableView/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/12/02/Expandable-TableView/</guid>
+        <link>https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</link>
+        <guid isPermaLink="true">https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</guid>
         
         <category>iOS</category>
         
