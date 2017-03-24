@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="FPWHdyBDD6jevLuW5oFDPqoeCkmXxYTpLezJ_qISKeE" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Code help, tutorials, guides, tips">
+    <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
+    <meta name="theme-color" content="#000000">
+
+    <title>CrashCourse: React js from start to deployment - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../img/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../img/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../img/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../img/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../img/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../img/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="../img/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="../img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="../img/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../img/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../img/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="CodeBaseCamp"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="../img/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="../img/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="../img/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="../img/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="../img/favicon/mstile-310x310.png" />
+
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://localhost:4000/2017/03/23/React-js-Crashcourse/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="/css/hux-blog.min.css"> -->
+    <link rel="stylesheet" href="/css/hux-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Code Base Camp</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    var __HuxNav__ = {
+        close: function(){
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        },
+        open: function(){
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+
+    // Bind Event
+    $toggle.addEventListener('click', function(e){
+        if ($navbar.className.indexOf('in') > 0) {
+            __HuxNav__.close()
+        }else{
+            __HuxNav__.open()
+        }
+    })
+
+    /**
+     * Since Fastclick is used to delegate 'touchstart' globally
+     * to hack 300ms delay in iOS by performing a fake 'click',
+     * Using 'e.stopPropagation' to stop 'touchstart' event from 
+     * $toggle/$collapse will break global delegation.
+     * 
+     * Instead, we use a 'e.target' filter to prevent handler
+     * added to document close HuxNav.  
+     *
+     * Also, we use 'click' instead of 'touchstart' as compromise
+     */
+    document.addEventListener('click', function(e){
+        if(e.target == $toggle) return;
+        if(e.target.className == 'icon-bar') return;
+        __HuxNav__.close();
+    })
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/2017-03-23_cover.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/2017-03-23_cover.jpg')
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.5);
+    }
+    
+</style>
+<header class="intro-header" >
+    <div class="header-mask"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Crashcourse" title="Crashcourse">Crashcourse</a>
+                        
+                        <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                        <a class="tag" href="/tags/#React" title="React">React</a>
+                        
+                        <a class="tag" href="/tags/#Javascript" title="Javascript">Javascript</a>
+                        
+                    </div>
+                    <h1>CrashCourse: React js from start to deployment</h1>
+                    
+                    
+                    <h2 class="subheading">Up and running with React apps as fast as possible.</h2>
+                    
+                    <span class="meta">Posted by Tom on March 23, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="overview">Overview</h1>
+
+<p>A while ago I wanted to set up a web app with react. I had the idea but no experience using react, and wanted to get up and runnning as fast as possible. Unfortunately I couldn’t find a tutorial that got straight to the point, from creating the project to deployment.</p>
+
+<p>This tutorial will hopefully fill that void to help you create a project, start tinkering, and deploy as fast as possible. This tutorial will be structured with each section about how to achieve a certain task, rather than us spending 30 minutes programming a weather app that you have no interest in.</p>
+
+<p>Its also worth noting that this will be a static app. What this means is the server will supply the client (web browser) with the files, and all the javascript processing will happen on the client. This won’t cover intercommunication between server and client (e.g. dynamically requesting data from a database).</p>
+
+<hr />
+
+<h1 id="setting-up-node">Setting up Node</h1>
+
+<p>Before we start we need to install Node. If you’ve already completed this step -&gt; <a href="#section_create">Jump to the Next Section</a>.</p>
+
+<h2 id="what-is-node">What is Node</h2>
+
+<p>Node.js is described as an ‘asynchronous event-driven javascript runtime’. Simply think of it as a literal server, in that serves content to users, such as web pages to a site visitor. Another important component of node (to this project) is npm, the Node Package Manager. This is basically the same as the package manager on Mac or Linux (e.g. apt-get), but it installs node libraries into a node project.</p>
+
+<p>For more info about node, check out their more detailed description: <a href="https://nodejs.org/en/about/">nodejs.org</a>.</p>
+
+<h2 id="installing-node">Installing Node</h2>
+
+<p>If you don’t have node installed it can be downloaded from their official site at: <a href="https://nodejs.org/en/download/">Here</a></p>
+
+<p>Alternatively it can be downloaded via package manager: <a href="https://nodejs.org/en/download/package-manager/">Here</a></p>
+
+<p>Once installed, open up a terminal window and navigate to where you want to set up the project.</p>
+
+<p id="section_create"></p>
+
+<h1 id="create-react-app">Create-React-App</h1>
+
+<p>The <a href="https://github.com/facebookincubator/create-react-app">Create-React-App</a> package is excellent for setting up a simple React App as fast as possible. First we need to install it globally (<code class="highlighter-rouge">-g</code>) with npm. This allows us to use the library across many projects, so that it doesn’t need to be installed for each one.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install -g create-react-app
+</code></pre>
+</div>
+
+<p>When it finishes installing, we can create the project (replace ‘my-app’ with the name of your project):</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>create-react-app my-app
+</code></pre>
+</div>
+
+<p>Navigate into the newly created project directory and run the application.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>my-app/
+npm start
+</code></pre>
+</div>
+
+<p>This will start the node server running our application in development mode. <code class="highlighter-rouge">npm start</code> should open the site in a browser window, but if it doesn’t, open your web browser and navigate to <code class="highlighter-rouge">http://localhost:3000/</code>.</p>
+
+<p>You should see something like this:</p>
+
+<p><img src="http://imgur.com/FXHOytp.png" alt="Screenshot" /></p>
+
+<p>At this point the app is done, Create-React-App has taken care of everything for us.</p>
+
+<h1 id="deploying-the-app">Deploying the App</h1>
+
+<p>Next we’ll deploy this app to see how it works. Stop the development build from running (CTRL+C in terminal). while still in the project’s directory (/my-app/) enter the following:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm run build
+</code></pre>
+</div>
+
+<p>This has now built our static app to the /build/ directory. To serve the production app up, we need one more library which we’ll install globally.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install -g serve
+</code></pre>
+</div>
+
+<p>The <a href="https://github.com/zeit/serve">Serve</a> package allows us to serve up static files (our application) to users. This is great for getting up and running with an app quickly, without having to set up something more elaborate (e.g. <a href="http://nginx.org/en/">nginx</a>).</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>serve -s build -p 80
+</code></pre>
+</div>
+<p>Breaking down the above command: we call the ‘serve’ command, and tell it to run a single-page app (<code class="highlighter-rouge">-s</code>) from the ‘build’ directory, and to run on port 80.</p>
+
+<h2 id="it-wont-run-on-port-80">“It won’t run on port 80”</h2>
+
+<p><img src="http://imgur.com/UghQRN9.png" alt="Screenshot" /></p>
+
+<p>This is likely a permissions problem, as ports below 1024 can only be opened by the root user. You CAN run the app as root, however you’re advised NOT TO as you’re giving your app root access:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo serve -s build -p 80
+</code></pre>
+</div>
+
+<p>A better practice is to redirect port 80 to another port (above 1024), where your server can be run as a normal user. Do this on your production server (DigitalOcean, heroku, AWS, etc) as you’ll only be running your development build from your home PC (probably?).</p>
+
+<p><strong>Linux:</strong></p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+</code></pre>
+</div>
+
+<p>Remove Forwarding:</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>iptables -t nat --line-numbers -n -L
+</code></pre>
+</div>
+
+<p><a href="http://serverfault.com/questions/112795/how-to-run-a-server-on-port-80-as-a-normal-user-on-linux">Source</a></p>
+
+<p><strong>Mac:</strong></p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"
+rdr pass inet proto tcp from any to any port 80 -&gt; 127.0.0.1 port 8080
+"</span> | sudo pfctl -ef -
+</code></pre>
+</div>
+
+<p>Remove Forwarding:</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo pfctl -F all -f /etc/pf.conf
+</code></pre>
+</div>
+
+<p><a href="https://salferrarello.com/mac-pfctl-port-forwarding/">Source</a></p>
+
+<p>Now we can re-run the server on the redirected port - 8080 in this example:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>sudo serve -s build -p 8080
+</code></pre>
+</div>
+
+<p>Your server should now be accessible from its hostname/IP address on the http port, without the need to append the port name:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>http://localhost/
+</code></pre>
+</div>
+
+<p>If you see your web app then it worked!</p>
+
+<p><img src="http://imgur.com/B2s315A.png" alt="Screenshot" /></p>
+
+<p>You’ve now set up a react web app thats accessible to anyone connecting to your server. You’re free to start exploring the files and start tinkering. The next sections will explain the structure of the application and how to achieve some common tasks (e.g. navigating between ‘screens’, links, events from buttons, input boxes, importing js libraries). Use the links on the right to jump to any section you might need.</p>
+
+<h1 id="project-structure">Project Structure</h1>
+
+<p>Create-React-App creates the following for us:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>my-app/
+    node_modules/
+        ...
+    build/
+        ...
+    public/
+        index.html
+        favicon.ico
+    src/
+        App.css
+        App.js
+        App.test.js
+        index.css
+        index.js
+        logo.svg
+    README.md
+    package.json
+</code></pre>
+</div>
+
+<p>The package.json defines our whole app package in node. If you don’t know what this is check out the official npm description: <a href="https://docs.npmjs.com/files/package.json">Here</a> and this excellent interactive guide to the package.json file: <a href="http://browsenpm.org/package.json">Here</a>.</p>
+
+<p>The entry-point to our application is the <code class="highlighter-rouge">my-app/public/index.html</code> file. Open this file and you’ll find:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">href=</span><span class="s">"%PUBLIC_URL%/favicon.ico"</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--
+      ...
+    --&gt;</span>
+    <span class="nt">&lt;title&gt;</span>React App<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"root"</span><span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="c">&lt;!--
+      ...
+    --&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p>The key here is the <code class="highlighter-rouge">&lt;div id="root"&gt;</code> in the <code class="highlighter-rouge">&lt;body&gt;</code> tags. This is where the react app attaches and renders its content. To see this, open the <code class="highlighter-rouge">my-app/src/index.js</code> file:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">'react-dom'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">'./App'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'./index.css'</span><span class="p">;</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span><span class="p">,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'root'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>This is our first introduction to react. The first two lines import the <code class="highlighter-rouge">react</code> and <code class="highlighter-rouge">react-dom</code> packages. The third line imports the App component from <code class="highlighter-rouge">my-app/src/App.js</code>, and the 4th simply imports the index css file.</p>
+
+<p>After importing, the script renders the <code class="highlighter-rouge">&lt;App /&gt;</code> component, imported above, into the <code class="highlighter-rouge">root</code> element we saw earlier in the <code class="highlighter-rouge">index.html</code>. To see what that <code class="highlighter-rouge">&lt;App /&gt;</code> component is, open the <code class="highlighter-rouge">my-app/src/App.js</code> file.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">logo</span> <span class="nx">from</span> <span class="s1">'./logo.svg'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'./App.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-header"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-logo"</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">"logo"</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">React</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-intro"</span><span class="o">&gt;</span>
+          <span class="nx">To</span> <span class="nx">get</span> <span class="nx">started</span><span class="p">,</span> <span class="nx">edit</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">src</span><span class="o">/</span><span class="nx">App</span><span class="p">.</span><span class="nx">js</span><span class="o">&lt;</span><span class="sr">/code&gt; and save to reload</span><span class="err">.
+</span>        <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>The first line imports the <code class="highlighter-rouge">Component</code> class from React, as we want to make a component. The second line imports an image we want to render, and the third line imports the stylesheet to be applied to the HTML rendered by this component.</p>
+
+<p>Next we create a class called <code class="highlighter-rouge">App</code> that extends the <code class="highlighter-rouge">Component</code> class. This class has 1 method: <code class="highlighter-rouge">render()</code>. This method returns the HTML we want to render when we used the <code class="highlighter-rouge">&lt;App /&gt;</code> tag in <code class="highlighter-rouge">index.js</code>.</p>
+
+<p>Finally, we export the react class with the line <code class="highlighter-rouge">export default App;</code>, so that it can be imported into <code class="highlighter-rouge">index.js</code>.</p>
+
+<p>This class also shows how a variable can be used in the rendered HTML. The logo that was imported is referenced in the img tag at <code class="highlighter-rouge">&lt;img src={logo} ...&gt;</code>.</p>
+
+<h1 id="class-methods">Class Methods</h1>
+
+<p>We can add additional methods to the App component like so:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">methodA</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">methodB</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">methodB</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>React also features some useful lifecycle methods. We’ve already seen the <code class="highlighter-rouge">render()</code> method. Some additional methods are shown below:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span>
+    <span class="c1">// Initialize component here</span>
+  <span class="p">}</span>
+  <span class="nx">componentWillMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Called before the component is mounted</span>
+  <span class="p">}</span>
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Called after the component is mounted</span>
+  <span class="p">}</span>
+  <span class="nx">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Called before the component is unmounted</span>
+  <span class="p">}</span>
+
+</code></pre>
+</div>
+
+<p>These are only some of the <code class="highlighter-rouge">Component</code> methods. The full API can be found <a href="https://facebook.github.io/react/docs/react-component.html">here.</a></p>
+
+<h1 id="events-buttons-input-box">Events (buttons, input box)</h1>
+
+<p><img src="http://imgur.com/7W5CBcI.png" alt="Screenshot" /></p>
+
+<p>We’ll extend our application by adding a small form to the html consisting of 1 input box and 1 input button:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-header"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-logo"</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">"logo"</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">React</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-intro"</span><span class="o">&gt;</span>
+          <span class="nx">To</span> <span class="nx">get</span> <span class="nx">started</span><span class="p">,</span> <span class="nx">edit</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">src</span><span class="o">/</span><span class="nx">App</span><span class="p">.</span><span class="nx">js</span><span class="o">&lt;</span><span class="sr">/code&gt; and save to reload</span><span class="err">.
+</span>        <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>
+        <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"submit"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"Search"</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">submittedValue</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>
+      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Here we create the form, and add a callback to the <code class="highlighter-rouge">onSubmit</code> form (we’ll create this method later). The next input derives its value from the <code class="highlighter-rouge">this.state.value</code> property, and also has an <code class="highlighter-rouge">onChange</code> callback - <code class="highlighter-rouge">this.onChangeCallback</code>. For our form button we add another input to the form. At the end of the form, we create a <code class="highlighter-rouge">&lt;h2&gt;</code> header to display the value of our form when we hit submit. The value of this header is derived from <code class="highlighter-rouge">this.state.submittedValue</code>.</p>
+
+<p>Lets create the methods for these callbacks:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span> <span class="c1">// MUST call superclass constructor</span>
+
+    <span class="c1">// Create properties for 'App' state.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">value</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>            <span class="c1">// Value displayed in input box</span>
+      <span class="na">submittedValue</span><span class="p">:</span> <span class="s1">''</span>    <span class="c1">// Value we set in &lt;h2&gt;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Bind events</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Called when user types in input field</span>
+  <span class="nx">onChangeInput</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Called when form is submitted</span>
+  <span class="nx">onSubmitForm</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">submittedValue</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span> <span class="c1">// Prevent default form submit behaviour</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>In the constructor we first create 2 properties in the component’s state - <code class="highlighter-rouge">value</code> and <code class="highlighter-rouge">submittedValue</code>. We then bind the callbacks to <code class="highlighter-rouge">this</code> class, to ensure that ‘this’ refers to the correct instance (this is the this=that/self quirk for those familiar with js callbacks).</p>
+
+<p>The <strong>onChangeInput</strong> event is called when the user types into the input field. We set the state of the ‘value’ property to whatever the user inputs, which is then displayed in the ‘input’ field on the webpage. If you don’t add this, then nothing will be displayed in the field when the user types.</p>
+
+<p>The <strong>onSubmitForm</strong> event is triggered when the user click the ‘submit’ button or presses enter. We call set state and set the ‘submittedValue’ to the value of the input field, and prevent the default form behaviour.</p>
+
+<p>Its important to note that in order for the UI to be updated, the state must be changed using the <code class="highlighter-rouge">setState</code> method.</p>
+
+<p>Re-run the development build with <code class="highlighter-rouge">npm start</code> and type into the input field. Press submit and the value from the field should be displayed below in the <code class="highlighter-rouge">&lt;h2&gt;</code> header.</p>
+
+<p><img src="http://imgur.com/EsLxskT.png" alt="Screenshot" /></p>
+
+<h1 id="multiple-screenspages">Multiple Screens/Pages</h1>
+
+<p>What if we want to navigate to a new screen? With react, we can conditionally render different components. If we take our ‘App’ component as our first screen, we can create a second component to navigate to, when the user presses submit.</p>
+
+<p>This will also demonstrate passing data between components.</p>
+
+<p>We’ll take the <code class="highlighter-rouge">App</code> class from the previous section and rename it to <code class="highlighter-rouge">HomeComponent</code>. Alternatively, copy and paste the below code into a new file called `HomeComponent.js:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">logo</span> <span class="nx">from</span> <span class="s1">'./logo.svg'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'./App.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">HomeComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">value</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+      <span class="na">submittedValue</span><span class="p">:</span> <span class="s1">''</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">onChangeInput</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">value</span><span class="p">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">onSubmitForm</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">submittedValue</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+    <span class="c1">//this.props.setScreenFunc(2, this.state.value);</span>
+    
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-header"</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-logo"</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">"logo"</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">React</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">p</span> <span class="nx">className</span><span class="o">=</span><span class="s2">"App-intro"</span><span class="o">&gt;</span>
+          <span class="nx">To</span> <span class="nx">get</span> <span class="nx">started</span><span class="p">,</span> <span class="nx">edit</span> <span class="o">&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">src</span><span class="o">/</span><span class="nx">App</span><span class="p">.</span><span class="nx">js</span><span class="o">&lt;</span><span class="sr">/code&gt; and save to reload</span><span class="err">.
+</span>        <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onSubmitForm</span><span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">}</span> <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onChangeInput</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"submit"</span> <span class="nx">value</span><span class="o">=</span><span class="s2">"Search"</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">submittedValue</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>        
+      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">HomeComponent</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Next we need to re-create our <code class="highlighter-rouge">App.js</code>, and also create a new file called <code class="highlighter-rouge">ResultComponent.js</code>. Your src folder should now contain:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>my-app/
+    src/
+        App.css
+        App.test.js
+        index.css
+        index.js
+        logo.svg
+
+        App.js
+        HomeComponent.js
+        ResultComponent.js
+</code></pre>
+</div>
+
+<p>Open <code class="highlighter-rouge">App.js</code> and add the following:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'./App.css'</span><span class="p">;</span>
+<span class="c1">// Import our newly created classes</span>
+<span class="kr">import</span> <span class="nx">HomeComponent</span> <span class="nx">from</span> <span class="s1">'./HomeComponent'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ResultComponent</span> <span class="nx">from</span> <span class="s1">'./ResultComponent'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">();</span>
+    <span class="c1">// Store the current screen and value from HomeComponent</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">screen</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="na">submittedValue</span><span class="p">:</span> <span class="s1">''</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+  <span class="c1">// Called by HomeComponent to change screen</span>
+  <span class="nx">setScreen</span> <span class="o">=</span> <span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+      <span class="na">submittedValue</span><span class="p">:</span> <span class="nx">value</span><span class="p">,</span>
+      <span class="na">screen</span><span class="p">:</span> <span class="nx">index</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// screen 1 = HomeComponent, screen 2 = ResultComponent</span>
+    <span class="k">switch</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">screen</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">HomeComponent</span> <span class="nx">setScreenFunc</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">setScreen</span><span class="p">}</span><span class="sr">/&gt;</span><span class="err">;
+</span>      <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">ResultComponent</span> <span class="nx">submittedValue</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">submittedValue</span><span class="p">}</span><span class="sr">/&gt;</span><span class="err">;
+</span>    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre>
+</div>
+<p>Firstly we store the current <code class="highlighter-rouge">screen</code> and <code class="highlighter-rouge">submittedValue</code> in the constructor. We then create <code class="highlighter-rouge">setScreen = (index, value)</code> which can be called from our HomeComponent. For why this looks different, see <a href="https://facebook.github.io/react/docs/handling-events.html">Property Initializer Syntax</a>. For simplicity we can think of it as a method.</p>
+
+<p>Finally in the render method, we choose which screen to render using a switch statement, which conditionally renders either the <code class="highlighter-rouge">HomeComponent</code> or <code class="highlighter-rouge">ResultComponent</code>. We also pass properties to each of these components. The <code class="highlighter-rouge">setScreenFunc</code> property of HomeComponent is given the value of our <code class="highlighter-rouge">setScreen</code> ‘method’, so that this component can call this method from its own component.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">HomeComponent</span> <span class="nx">setScreenFunc</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">setScreen</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span></code></pre>
+</div>
+
+<p>We also set the value of the <code class="highlighter-rouge">submittedValue</code> property of the ResultComponent to <code class="highlighter-rouge">this.state.submittedValue</code>, which is set when HomeComponent calls <code class="highlighter-rouge">setScreen</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">ResultComponent</span> <span class="nx">submittedValue</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">submittedValue</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span></code></pre>
+</div>
+
+<p>So how do we access these components from the classes?</p>
+
+<p>Open <code class="highlighter-rouge">HomeComponent</code>. Our constructor should also look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>constructor(props) {
+    super(props);
+
+    this.state = {
+      value: '',
+      submittedValue: ''
+    }
+
+    this.onChangeInput = this.onChangeInput.bind(this);
+    this.onSubmitForm = this.onSubmitForm.bind(this);
+  }
+</code></pre>
+</div>
+
+<p>The class receives the properties that we set in the <code class="highlighter-rouge">App.js</code> class as the <code class="highlighter-rouge">props</code> property in the constructor.</p>
+
+<p>Find the <code class="highlighter-rouge">onSubmitForm(event)</code> method. Uncomment the <code class="highlighter-rouge">this.props...</code>line, so that the method now looks like this:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">onSubmitForm</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="na">submittedValue</span><span class="p">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">setScreenFunc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Here we call the <code class="highlighter-rouge">this.props.setScreenFunc</code> property we created, passing it the screen we want: <code class="highlighter-rouge">2</code> and the value of the input box: <code class="highlighter-rouge">this.state.value</code>.</p>
+
+<p>Open the <code class="highlighter-rouge">ResultComponent.js</code> file and add the following:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'./App.css'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">ResultComponent</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">result</span><span class="p">:</span> <span class="nx">props</span><span class="p">.</span><span class="nx">submittedValue</span>
+    <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">result</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>      <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">ResultComponent</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Again we take the properties from the constructor, and this time we set the state’s property <code class="highlighter-rouge">result</code> to <code class="highlighter-rouge">props.submittedValue</code>.</p>
+
+<p>Finally, we render the value of <code class="highlighter-rouge">this.state.result</code> in the render method.</p>
+
+<p>Re-run the application and type something into the input field. Press enter and the new ResultComponent screen should be rendered with your input text:</p>
+
+<p><img src="http://imgur.com/BFVGAZz.png" alt="Screenshot" /></p>
+
+<hr />
+
+<h1 id="resources">Resources</h1>
+
+<p>Hopefully this has established a good starting-point from which to explore more of what react has to offer.</p>
+
+<p>A great example application that was helpful to me is <a href="https://github.com/djirdehh/react-living-app">React-Living-App</a> created by <a href="https://github.com/djirdehh">Hassan Djirdeh on Github</a>.</p>
+
+<hr />
+
+<h1 id="download---github">Download - Github</h1>
+
+<p id="section_download"></p>
+
+<p>The full source code for the project can be found on Github at:</p>
+
+<p><a href="https://github.com/codebasecampprojects/React-Tutorial">https://github.com/codebasecampprojects/React-Tutorial</a></p>
+
+<p>—— Tom 2017.03</p>
+
+
+                <hr style="visibility: hidden;">
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/12/02/Expandable-TableView/" data-toggle="tooltip" data-placement="top" title="iOS Expandable Table View Cells">
+                        Previous<br>
+                        <span>iOS Expandable Table View Cells</span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">SECTION</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://www.hypnosstudios.com/">Hypnos Studios</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "code-base-camp";
+    var disqus_identifier = "/2017/03/23/React-js-Crashcourse";
+    var disqus_url = "http://localhost:4000/2017/03/23/React-js-Crashcourse/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/tjw0051">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Code Base Camp 2017
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Service Worker -->
+
+<script type="text/javascript">
+    if(navigator.serviceWorker){
+        // For security reasons, a service worker can only control the pages that are in the same directory level or below it. That's why we put sw.js at ROOT level.
+        navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {console.log('Service Worker Registered. ', registration)})
+            .catch((error) => {console.log('ServiceWorker registration failed: ', error)})
+    }
+</script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/ 
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers   
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async('/js/jquery.tagcloud.js',function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-86516015-1';
+    var _gaDomain = 'codebasecamp.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
