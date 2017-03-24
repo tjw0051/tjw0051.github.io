@@ -2,7 +2,7 @@
 layout:     post
 title:      "Classes and Events in node.js"
 subtitle:   "Exporting classes, receiving events, emitting events."
-date:       2017-12-02 12:30:00
+date:       2017-01-08 12:30:00
 author:     "Tom"
 header-img: "img/2017-01-08_cover.jpg"
 header-mask: 0.5
