@@ -16,7 +16,7 @@ tags:
 
 # Overview
 
-A while ago I wanted to set up a web app with react. I had the idea but no experience using react, and wanted to get up and runnning as fast as possible. Unfortunately I couldn't find a tutorial that got straight to the point, from creating the project to deployment. 
+A while ago I wanted to set up a web app with react. I had the idea but no experience using react, and wanted to get up and runnning as fast as possible. Knowing other languages and technologies I thought I'd figure it out along the way, but was left with a few questions. Unfortunately I couldn't find a tutorial that got straight to the point, from creating the project to deployment. 
 
 This tutorial will hopefully fill that void to help you create a project, start tinkering, and deploy as fast as possible. This tutorial will be structured with each section about how to achieve a certain task, rather than us spending 30 minutes programming a weather app that you have no interest in. 
 
