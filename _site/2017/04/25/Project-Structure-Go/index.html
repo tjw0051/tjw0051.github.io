@@ -10,7 +10,7 @@
     <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
     <meta name="theme-color" content="#000000">
 
-    <title>Classes and Events in node.js - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+    <title>Putting projects where you want with Go - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -39,7 +39,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/">
+    <link rel="canonical" href="http://localhost:4000/2017/04/25/Project-Structure-Go/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,13 +173,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/2017-01-08_cover.jpg" width="0" height="0"> -->
+<!-- <img src="/img/2017-04-25_cover.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/2017-01-08_cover.jpg')
+        background-image: url('/img/2017-04-25_cover.jpg')
     }
 
     
@@ -199,21 +199,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Javascript" title="Javascript">Javascript</a>
+                        <a class="tag" href="/tags/#Go" title="Go">Go</a>
                         
-                        <a class="tag" href="/tags/#node.js" title="node.js">node.js</a>
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
                         
-                        <a class="tag" href="/tags/#Classes" title="Classes">Classes</a>
-                        
-                        <a class="tag" href="/tags/#Events" title="Events">Events</a>
+                        <a class="tag" href="/tags/#Project Management" title="Project Management">Project Management</a>
                         
                     </div>
-                    <h1>Classes and Events in node.js</h1>
+                    <h1>Putting projects where you want with Go</h1>
                     
                     
-                    <h2 class="subheading">Exporting classes, receiving events, emitting events.</h2>
+                    <h2 class="subheading">Screw you gopher, and your workspace!</h2>
                     
-                    <span class="meta">Posted by Tom on January 8, 2017</span>
+                    <span class="meta">Posted by Tom on April 25, 2017</span>
                 </div>
             </div>
         </div>
@@ -233,183 +231,88 @@
 
 				<h1 id="overview">Overview</h1>
 
-<p>Since the release of ECMAScript 6 it is now possible to create classes in a more conventional object-oriented way. A previous method of creating ‘classes’ in Javascript was to define a function as a class, with variables stored in the object via <code class="highlighter-rouge">this</code> and sub-functions to the ‘class’ or to the prototype, like so:</p>
+<p>Since picking up Go I’ve been a bit resistant to some of its ways, particularly the way it manages projects. As someone who obsessively organises their projects into nicely-defined directories, I was a bit taken-a-back by Go’s unconventional workspace structure. I typically don’t like to use the pre-defined workspace folders of IDEs like Visual Studio or Jetbrains products.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">CarClass</span> <span class="p">(</span><span class="nx">constructorVariable</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span> <span class="o">=</span> <span class="nx">constructorVariable</span><span class="p">;</span>
+<p>On a recent project I decided enough is enough, i’m taking back my filesystem and there’s nothing Go can do to stop me! I wanted to see if I could symlink my project directory into Go’s workspace path. And, it works! You can sym link your project’s folder, e.g. <code class="highlighter-rouge">'Example/'</code> into your GOPATH src folder, e.g. <code class="highlighter-rouge">'$HOME/go/src/Example'</code>.</p>
 
-    <span class="kd">function</span> <span class="nx">myMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">methodParameter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>If you know how to do this and like the idea, then great! Go forth and liberate your filesystem!</p>
 
-<span class="nx">CarClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">protoMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<p>The same class defined in ES6 could look like this:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">CarClass</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">constructorVariable</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span> <span class="o">=</span> <span class="nx">constructorVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">myMethod</span><span class="p">(</span><span class="nx">methodParameter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>For a more detailed description of classes in ES6, check out <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">Mozilla’s very helpful Javascript Reference</a>.</p>
-
-<p>I had a situation recently where I had to send and receive events from a class which turned out to be more confusing than I initially thought. Being rather new to Javascript but familiar with more object-oriented languages, I made some incorrect assumptions about how classes work in Javascript and spent a good amount of time scouring stack overflow for the wrong questions.</p>
-
-<p>Without further ado, here’s some quick snippets on how to implement some common event features with classes.</p>
+<p>If not, I’m going to outline below how to set up a nice Go environment on your system that uses this method.</p>
 
 <hr />
 
-<h1 id="sending-events-from-classes">Sending Events from Classes</h1>
+<h1 id="setting-your-go-path">Setting your Go Path</h1>
 
-<p>This is pretty straightforward and not unlike many other languages. Firstly lets get the events module:</p>
+<p>The GoPath is set to your home directory at $Home/go by default. For this example we’re going to stick with this location, but you could move this to some deep dark hole where you never have to see it again. To see where the go path is set to, enter this into your terminal:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">EventEmitter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'events'</span><span class="p">).</span><span class="nx">EventEmitter</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>go env GOPATH
 </code></pre>
 </div>
 
-<p>Next we create our class and give it a constructor. Its important to note that if you create a constructor and leave it empty, it will throw errors. If you don’t need a constructor don’t include one:</p>
+<p>If it is set to your home directory, you should see:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Don't leave this empty</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-        
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>/Users/[your-username]/go
 </code></pre>
 </div>
 
-<p>To send events from our class we need to extend the EventEmitter class:</p>
+<p>If it is not set here, enter the following:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>export GOPATH=$HOME/go
 </code></pre>
 </div>
 
-<p>For extending the Event Emitter we also need to call the constructor of the superclass in our constructor:</p>
+<p>You can verify the gopath has been set correctly by again entering:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>go env GOPATH
 </code></pre>
 </div>
 
-<p>Finally, lets add another method to the class and make it fire off an event:</p>
+<h1 id="creating-the-workspace">Creating the Workspace</h1>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">openDoor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>Next we create the following directory structure:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>$HOME
+- go
+  - bin/
+  - pkg/
+  - src/
 </code></pre>
 </div>
 
-<p>When the class is instantiated and the <code class="highlighter-rouge">openDoor()</code> method is called, the class will emit the ‘doorOpen’ event, passing the name of the vehicle that was defined in the constructor.</p>
+<h1 id="setting-up-a-new-project">Setting Up a New Project</h1>
 
-<p>We also need to make our class accessible by other scripts. At the end of the script, add the following line to export the module:</p>
+<p>We’re going to set up a project called <em>MyProject</em> and save it to a projects folder in our home directory, or wherever you’d like to store your project.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Car</span><span class="p">;</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir ~/Projects
+mkdir ~/Projects/MyProject
+touch ~/Projects/MyProject/Main.go
 </code></pre>
 </div>
 
-<p>To receive events from our class, make a new script and import the module we just created:</p>
+<p>We’ll create a quick <em>Hello World</em> program to show that we can build our application. Open Main.go in <code class="highlighter-rouge">~/Projects/MyProject</code> and enter:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./Car.js'</span><span class="p">);</span>
+<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
 
-<span class="kd">var</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'mclaren'</span><span class="p">);</span>
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="s">"log"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+
+</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
+  </span><span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)</span><span class="x">
+</span><span class="p">}</span><span class="x">
+</span></code></pre>
+</div>
+
+<p>Next we create a symbolic link to our projects folder in go’s workspace:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ln -s ~/Projects/MyProject ~/go/src/MyProject
 </code></pre>
 </div>
 
-<p>Next we create a handler to fire when the <code class="highlighter-rouge">openDoor()</code> module is called:</p>
+<hr />
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./Car.js'</span><span class="p">);</span>
+<p>I hope some people find this useful. Its obviously not rocket science but it might not be obvious if you want to avoid Go’s workspace.</p>
 
-<span class="kd">var</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'mclaren'</span><span class="p">);</span>
-
-<span class="nx">myCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-   <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened'</span><span class="p">);</span> 
-<span class="p">});</span>
-</code></pre>
-</div>
-
-<p>Now we can open the car door, triggering the callback:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">myCar</span><span class="p">.</span><span class="nx">openDoor</span><span class="p">();</span>
-</code></pre>
-</div>
-
-<h1 id="receiving-events-inside-a-class">Receiving Events inside a Class</h1>
-
-<p>Another situation I encountered was trying to receive events within a class. A good place to set these up (unless we want to create callbacks from a method) is in the constructor:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened'</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Now when the doorOpen event is fired from the testCar, the code within our callback will be executed.</p>
-
-<h1 id="referencing-class-variables-inside-closure">Referencing Class Variables inside Closure</h1>
-
-<p>Say we wanted to print the name of the car from inside the testCar.on callback. Intuition says the way to do this is:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened on: '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>However, this won’t print the name of the enclosing vehicle, because the scope of <code class="highlighter-rouge">this</code> is limited to within the closure, and cannot access the outside class. Therefore we need to store a reference to the enclosing class so that we can access it from within the closure:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened on: '</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>Now the name of the enclosing class (mclaren) will be printed to the console. This is also sometimes referred to as the this-that trick.</p>
-
-<p>—— Tom 2017.01</p>
+<p>—— Tom 2017.04</p>
 
 
                 <hr style="visibility: hidden;">
@@ -420,19 +323,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/12/02/Expandable-TableView/" data-toggle="tooltip" data-placement="top" title="iOS Expandable Table View Cells">
-                        Previous<br>
-                        <span>iOS Expandable Table View Cells</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
                         <a href="/2017/03/23/React-js-Crashcourse/" data-toggle="tooltip" data-placement="top" title="CrashCourse: React js from start to deployment">
-                        Next<br>
+                        Previous<br>
                         <span>CrashCourse: React js from start to deployment</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
@@ -537,8 +433,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "code-base-camp";
-    var disqus_identifier = "/2017/01/08/Working-With-Classes-in-Javascript";
-    var disqus_url = "http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/";
+    var disqus_identifier = "/2017/04/25/Project-Structure-Go";
+    var disqus_url = "http://localhost:4000/2017/04/25/Project-Structure-Go/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

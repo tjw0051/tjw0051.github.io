@@ -3,17 +3,117 @@
   <channel>
     <title>Code Base Camp</title>
     <description>Code help, tutorials, guides, tips</description>
-    <link>https://www.codebasecamp.com/</link>
-    <atom:link href="https://www.codebasecamp.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 24 Mar 2017 02:34:48 +0000</pubDate>
-    <lastBuildDate>Fri, 24 Mar 2017 02:34:48 +0000</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 26 Apr 2017 03:57:41 +0100</pubDate>
+    <lastBuildDate>Wed, 26 Apr 2017 03:57:41 +0100</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>Putting projects where you want with Go</title>
+        <description>&lt;h1 id=&quot;overview&quot;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;Since picking up Go I’ve been a bit resistant to some of its ways, particularly the way it manages projects. As someone who obsessively organises their projects into nicely-defined directories, I was a bit taken-a-back by Go’s unconventional workspace structure. I typically don’t like to use the pre-defined workspace folders of IDEs like Visual Studio or Jetbrains products.&lt;/p&gt;
+
+&lt;p&gt;On a recent project I decided enough is enough, i’m taking back my filesystem and there’s nothing Go can do to stop me! I wanted to see if I could symlink my project directory into Go’s workspace path. And, it works! You can sym link your project’s folder, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;'Example/'&lt;/code&gt; into your GOPATH src folder, e.g. &lt;code class=&quot;highlighter-rouge&quot;&gt;'$HOME/go/src/Example'&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you know how to do this and like the idea, then great! Go forth and liberate your filesystem!&lt;/p&gt;
+
+&lt;p&gt;If not, I’m going to outline below how to set up a nice Go environment on your system that uses this method.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;setting-your-go-path&quot;&gt;Setting your Go Path&lt;/h1&gt;
+
+&lt;p&gt;The GoPath is set to your home directory at $Home/go by default. For this example we’re going to stick with this location, but you could move this to some deep dark hole where you never have to see it again. To see where the go path is set to, enter this into your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;go env GOPATH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If it is set to your home directory, you should see:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Users/[your-username]/go
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If it is not set here, enter the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;export GOPATH=$HOME/go
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can verify the gopath has been set correctly by again entering:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;go env GOPATH
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;creating-the-workspace&quot;&gt;Creating the Workspace&lt;/h1&gt;
+
+&lt;p&gt;Next we create the following directory structure:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$HOME
+- go
+  - bin/
+  - pkg/
+  - src/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;setting-up-a-new-project&quot;&gt;Setting Up a New Project&lt;/h1&gt;
+
+&lt;p&gt;We’re going to set up a project called &lt;em&gt;MyProject&lt;/em&gt; and save it to a projects folder in our home directory, or wherever you’d like to store your project.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir ~/Projects
+mkdir ~/Projects/MyProject
+touch ~/Projects/MyProject/Main.go
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We’ll create a quick &lt;em&gt;Hello World&lt;/em&gt; program to show that we can build our application. Open Main.go in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Projects/MyProject&lt;/code&gt; and enter:&lt;/p&gt;
+
+&lt;div class=&quot;language-go highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;package&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;log&quot;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;x&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello World!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next we create a symbolic link to our projects folder in go’s workspace:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ln -s ~/Projects/MyProject ~/go/src/MyProject
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;I hope some people find this useful. Its obviously not rocket science but it might not be obvious if you want to avoid Go’s workspace.&lt;/p&gt;
+
+&lt;p&gt;—— Tom 2017.04&lt;/p&gt;
+</description>
+        <pubDate>Tue, 25 Apr 2017 17:02:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/04/25/Project-Structure-Go/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/04/25/Project-Structure-Go/</guid>
+        
+        <category>Go</category>
+        
+        <category>shell</category>
+        
+        <category>Project Management</category>
+        
+        
+      </item>
     
       <item>
         <title>CrashCourse: React js from start to deployment</title>
         <description>&lt;h1 id=&quot;overview&quot;&gt;Overview&lt;/h1&gt;
 
-&lt;p&gt;A while ago I wanted to set up a web app with react. I had the idea but no experience using react, and wanted to get up and runnning as fast as possible. Unfortunately I couldn’t find a tutorial that got straight to the point, from creating the project to deployment.&lt;/p&gt;
+&lt;p&gt;A while ago I wanted to set up a web app with react. I had the idea but no experience using react, and wanted to get up and runnning as fast as possible. Knowing other languages and technologies I thought I’d figure it out along the way, but was left with a few questions. Unfortunately I couldn’t find a tutorial that got straight to the point, from creating the project to deployment.&lt;/p&gt;
 
 &lt;p&gt;This tutorial will hopefully fill that void to help you create a project, start tinkering, and deploy as fast as possible. This tutorial will be structured with each section about how to achieve a certain task, rather than us spending 30 minutes programming a weather app that you have no interest in.&lt;/p&gt;
 
@@ -574,8 +674,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2017.03&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Mar 2017 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2017/03/23/React-js-Crashcourse/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/03/23/React-js-Crashcourse/</guid>
+        <link>http://localhost:4000/2017/03/23/React-js-Crashcourse/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/03/23/React-js-Crashcourse/</guid>
         
         <category>Crashcourse</category>
         
@@ -771,8 +871,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2017.01&lt;/p&gt;
 </description>
         <pubDate>Sun, 08 Jan 2017 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2017/01/08/Working-With-Classes-in-Javascript/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/01/08/Working-With-Classes-in-Javascript/</guid>
+        <link>http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/</guid>
         
         <category>Javascript</category>
         
@@ -1277,8 +1377,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2015.11&lt;/p&gt;
 </description>
         <pubDate>Fri, 02 Dec 2016 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</guid>
+        <link>http://localhost:4000/2016/12/02/Expandable-TableView/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/12/02/Expandable-TableView/</guid>
         
         <category>iOS</category>
         
