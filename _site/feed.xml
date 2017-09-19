@@ -5,9 +5,260 @@
     <description>Code help, tutorials, guides, tips</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 26 Apr 2017 03:57:41 +0100</pubDate>
-    <lastBuildDate>Wed, 26 Apr 2017 03:57:41 +0100</lastBuildDate>
+    <pubDate>Wed, 20 Sep 2017 00:44:45 +0100</pubDate>
+    <lastBuildDate>Wed, 20 Sep 2017 00:44:45 +0100</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>iOS 11 and Android 8.0 Oreo App Icon Design Template</title>
+        <description>&lt;h1 id=&quot;overview&quot;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/Ht7tVah.png&quot; alt=&quot;iOS 11 Android Oreo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Designing an App Icon on an empty white page makes it difficult to see how it will look when found on the App Store or Google Play. You want your icon to stand out amongst the sea of colours and badges so that users are interested enough to take a closer look.&lt;/p&gt;
+
+&lt;p&gt;The following template has been designed for iOS 11 and Android O icons. App icons are stored edited as sketch symbols which automatically update on the preview templates, so you only need to change one artboard to see your changes across all devices and app stores.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html&quot;&gt;Download Sketch Template&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;icon-design&quot;&gt;Icon Design&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/txD6ora.png&quot; alt=&quot;Icon Design&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first page of the template allows you to design the Icons for Android and iOS at the maximum recommended resolution (512x512 for iOS and 1024x1024 for Android). It also includes additional sizes recommended by Apple and Google.&lt;/p&gt;
+
+&lt;p&gt;For iOS this is quite straightforward. Size are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Play Store - 512x512&lt;/li&gt;
+  &lt;li&gt;xxxhdpi - 192x192&lt;/li&gt;
+  &lt;li&gt;xxhdpi - 144x144&lt;/li&gt;
+  &lt;li&gt;xhdpi - 96x96&lt;/li&gt;
+  &lt;li&gt;hdpi - 72x72&lt;/li&gt;
+  &lt;li&gt;mdpi - 48x48&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;iOS icons are a considerably more exhaustive, with different sizes for iPhone and iPad icons, including Settings Screen, Spotlight Search and Notification icons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;App Store - 1024x1024&lt;/li&gt;
+  &lt;li&gt;iPhone 3x - 180x180&lt;/li&gt;
+  &lt;li&gt;iPhone 2x - 152x152&lt;/li&gt;
+  &lt;li&gt;iPad 3x - 167x167&lt;/li&gt;
+  &lt;li&gt;iPad 2x - 152x152&lt;/li&gt;
+  &lt;li&gt;iPhone/iPad Settings 3x - 87x87&lt;/li&gt;
+  &lt;li&gt;iPhone/iPad Settings 2x - 58x58&lt;/li&gt;
+  &lt;li&gt;Spotlight - 80x80&lt;/li&gt;
+  &lt;li&gt;Notifications - 40x40&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Its also worth noting that all iOS icons are masked as rounded-squares (NOT squircles anymore) when they are displayed on the App Store. For the large iOS icon the corner radius is 120 for dimensions 1024x1024. Scale this accordingly for other icon sizes.&lt;/p&gt;
+
+&lt;h1 id=&quot;app-store-previews&quot;&gt;App Store Previews&lt;/h1&gt;
+
+&lt;p&gt;The second page of the template shows previews for:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Google Play on Phone&lt;/li&gt;
+  &lt;li&gt;Google Play on Web Browser&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/dRThIHy.png&quot; alt=&quot;Google Play Previews&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;iOS App Store on Phone&lt;/li&gt;
+  &lt;li&gt;iOS App Store on iTunes (desktop)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/ek1G8Fe.png&quot; alt=&quot;iOS App Store Previews&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The icons on the previous page are symbols that automatically update on the app-store previews when you make changes. You can also change the name and category on the previews to your own app.&lt;/p&gt;
+
+&lt;p&gt;The example demonstrates how you might design the same icon in both Android and iOS styles, with Android favouring flat colours and long-shadows, while iOS icons typically use few shadows and colourful gradients. These are of course just guidelines that both companies frequently break with their own designs, so its important to be creative if you want to stand out.&lt;/p&gt;
+
+&lt;h1 id=&quot;download&quot;&gt;Download&lt;/h1&gt;
+
+&lt;p&gt;You can get the template here from Sketch App Sources:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html&quot;&gt;Download Sketch Template&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;—— Tom 2017.09&lt;/p&gt;
+</description>
+        <pubDate>Wed, 20 Sep 2017 00:32:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/09/20/Icon-Template/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/20/Icon-Template/</guid>
+        
+        <category>Design</category>
+        
+        <category>iOS</category>
+        
+        <category>Android</category>
+        
+        <category>Template</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Hosting Multiple Websites on the same Server</title>
+        <description>&lt;h1 id=&quot;overview&quot;&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;For setting up small projects you often find that a single server is sufficiently powerful to serve websites or services that are infrequently used. For setting up a single website on a server, you might have spun up a node or apache server, set it to listen on port 80, and forwarded your domain name (e.g. mywebsite.com) to your server’s IP address (27.0.3.4). When someone visits your website, they browse to mywebsite.com, send a GET or other request to your web server, which returns web pages for your website.&lt;/p&gt;
+
+&lt;p&gt;It becomes apparent that this is a problem if you have multiple domains pointed to the same server. For example if you have 2 node.js servers running, the first serving pages for mywebsite.com, and the second for notmywebsite.com, the server will not know which website the user typed into their browser, as both domain names point to your server. Furthermore you can’t bind both servers to port 80 in most cases. The solution is a reverse-proxy.&lt;/p&gt;
+
+&lt;p&gt;Nginx is a hugely popular http server, whos first introduction to most people is as a proxy server for our situation. A proxy server is a server that &lt;a href=&quot;https://en.wikipedia.org/wiki/Proxy_server&quot;&gt;acts as an intermediary for requests from clients seeking resources from other servers.&lt;/a&gt;. In this case our requests from clients are our websites (mywebsite.com and notmywebsite.com) and the resources are the web pages our two apache/node/etc instances are serving.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;installing-nginx&quot;&gt;Installing Nginx&lt;/h1&gt;
+
+&lt;p&gt;This installation will assume you are installing Nginx on Ubuntu 14.04 or 16.04. If that is not the case it is recommended that you find a seperate installation guide for this step to avoid any problems.&lt;/p&gt;
+
+&lt;p&gt;Installing Nginx on a fresh ubuntu 14.04 or 16.04 should be straightforward. First we update the package manager then install nginx:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install nginx-full
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;configuring-nginx&quot;&gt;Configuring Nginx&lt;/h1&gt;
+
+&lt;p&gt;For this example we’ll be configuring two websites, but it should be trivial to configure more.&lt;/p&gt;
+
+&lt;p&gt;Nginx stores host configurations in &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx/sites-available/&lt;/code&gt;. After installation, a default configuration will be created in this directory. Delete this file as we’ll be creating our own configurations:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo rm /etc/nginx/sites-enabled/default
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Next create two files in this directory for our two websites (substitute the names for those of your websites):&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo touch /etc/nginx/sites-available/mywebsite.com
+sudo touch /etc/nginx/sites-available/notmywebsite.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Before the next step you’ll need to configure your server’s ports. if you’ve set up a web server you might be exposing it on port 80. For both applications, change these to ports that are NOT 80 and not already in use. Picking ports &amp;gt; 2000 is a safe bet. The servers also cannot use the same port. For my node.js servers, i’ll be setting the following ports:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mywebsite.com    -&amp;gt; :8081
+notmywebsite.com -&amp;gt; :8082
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In node (using express) this would be done by &lt;code class=&quot;highlighter-rouge&quot;&gt;app.listen(8081)&lt;/code&gt; for my first server, and &lt;code class=&quot;highlighter-rouge&quot;&gt;app.listen(8082)&lt;/code&gt; for the second server. The reason for this will become clear in the next step.&lt;/p&gt;
+
+&lt;h1 id=&quot;defining-nginx-hosts&quot;&gt;Defining Nginx Hosts&lt;/h1&gt;
+
+&lt;p&gt;Next we’re going to edit the host files we created earlier and add our configuration. Open &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/nginx/sites-available/mywebsite.com&lt;/code&gt; using your favourite text editor:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo nano /etc/nginx/sites-available/mywebsite.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Input the following configuration:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen 80;
+
+    server_name mywebsite.com www.mywebsite.com;
+
+    location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        proxy_pass http://127.0.0.1:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade &lt;span class=&quot;nv&quot;&gt;$http_upgrade&lt;/span&gt;;
+        proxy_set_header Connection &lt;span class=&quot;s1&quot;&gt;'upgrade'&lt;/span&gt;;
+        proxy_set_header Host &lt;span class=&quot;nv&quot;&gt;$host&lt;/span&gt;;
+        proxy_cache_bypass &lt;span class=&quot;nv&quot;&gt;$http_upgrade&lt;/span&gt;;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Change the &lt;code class=&quot;highlighter-rouge&quot;&gt;server_name&lt;/code&gt; line to your website address, with 2 versions, one with and one without the &lt;code class=&quot;highlighter-rouge&quot;&gt;www&lt;/code&gt;. Change the &lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_pass&lt;/code&gt; line where it says &lt;code class=&quot;highlighter-rouge&quot;&gt;8081&lt;/code&gt; to whichever port you decided to use for your first website. Save the file and close it.&lt;/p&gt;
+
+&lt;p&gt;Next open up our second host file:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo nano /etc/nginx/sites-available/notmywebsite.com
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;…and input the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;server &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    listen 80;
+
+    server_name notmywebsite.com www.notmywebsite.com;
+
+    location / &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        proxy_pass http://127.0.0.1:8082;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade &lt;span class=&quot;nv&quot;&gt;$http_upgrade&lt;/span&gt;;
+        proxy_set_header Connection &lt;span class=&quot;s1&quot;&gt;'upgrade'&lt;/span&gt;;
+        proxy_set_header Host &lt;span class=&quot;nv&quot;&gt;$host&lt;/span&gt;;
+        proxy_cache_bypass &lt;span class=&quot;nv&quot;&gt;$http_upgrade&lt;/span&gt;;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Again change the &lt;code class=&quot;highlighter-rouge&quot;&gt;server_name&lt;/code&gt; line to match those for your second website, and change the port of the &lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_pass&lt;/code&gt; line from &lt;code class=&quot;highlighter-rouge&quot;&gt;8082&lt;/code&gt; to whatever the port is that you set for your second server. Save and close the file.&lt;/p&gt;
+
+&lt;h1 id=&quot;loading-the-new-configuration&quot;&gt;Loading the New Configuration&lt;/h1&gt;
+
+&lt;p&gt;Nginx has a handy tool for testing if a configuration has been created correctly. Run the following command:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo nginx -t
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If the output says the syntax is OK and test is successful then we can proceed. If not, go back through the previous step to see if theres anything you might have missed.&lt;/p&gt;
+
+&lt;p&gt;Next we reload the Nginx service to use our new configuration:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo systemctl reload nginx
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Our server should now be set up correctly. If your web servers aren’t already running, run them now.&lt;/p&gt;
+
+&lt;h1 id=&quot;configuring-dns&quot;&gt;Configuring DNS&lt;/h1&gt;
+
+&lt;p&gt;Next you’ll need to go to your DNS and create A records for your domain names that point to your server’s address. This is going to be specific to whatever DNS you’re using but here’s an example of my setup from DigitalOcean to give you an idea:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://imgur.com/1wOOU9Q.png&quot; alt=&quot;MyWebsite.com&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://imgur.com/hZKveYK.png&quot; alt=&quot;NotMyWebsite.com&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the examples above, the records for both &lt;code class=&quot;highlighter-rouge&quot;&gt;mywebsite.com&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;notmywebsite.com&lt;/code&gt; point to my server’s IP address &lt;code class=&quot;highlighter-rouge&quot;&gt;178.60.100.102&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&quot;test-it&quot;&gt;Test It&lt;/h1&gt;
+
+&lt;p&gt;If you’ve set up nginx and reloaded the configuration, started your web servers, and forwarded your domain names to point to your server’s address, its time to test it out. Open a web browser and navigate to your two websites. You should be served the correct web pages for the website you accessed. If not, re-check the configuration in the above steps and make sure you’ve set the correct ports.&lt;/p&gt;
+
+&lt;p&gt;It may also take some time for your DNS records to be updated, so wait 5 minutes then try again. Additionally make sure that if you have any caching layers (e.g. Cloudflare Always Online™ or other), purge the cache so that the changes are propogated.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;I hope this guide has helped you set up nginx and save a little money by hosting multiple websites on the same server.&lt;/p&gt;
+
+&lt;p&gt;If you’re interested in going a step further and securing your server with HTTPS/TLS I highly recommend &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04&quot;&gt;this&lt;/a&gt; guide by DigitalOcean.&lt;/p&gt;
+
+&lt;p&gt;—— Tom 2017.08&lt;/p&gt;
+</description>
+        <pubDate>Wed, 30 Aug 2017 18:08:00 +0100</pubDate>
+        <link>http://localhost:4000/2017/08/30/Reverse-Proxy/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/30/Reverse-Proxy/</guid>
+        
+        <category>Go</category>
+        
+        <category>shell</category>
+        
+        <category>Project Management</category>
+        
+        
+      </item>
     
       <item>
         <title>Putting projects where you want with Go</title>
@@ -97,8 +348,8 @@ touch ~/Projects/MyProject/Main.go
 &lt;p&gt;—— Tom 2017.04&lt;/p&gt;
 </description>
         <pubDate>Tue, 25 Apr 2017 17:02:00 +0100</pubDate>
-        <link>http://localhost:4000/2017/04/25/Project-Structure-Go/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/04/25/Project-Structure-Go/</guid>
+        <link>http://localhost:4000/2017/04/25/Project-Structure-Go.1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/04/25/Project-Structure-Go.1/</guid>
         
         <category>Go</category>
         

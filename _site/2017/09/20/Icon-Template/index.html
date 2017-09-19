@@ -10,7 +10,7 @@
     <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
     <meta name="theme-color" content="#000000">
 
-    <title>Putting projects where you want with Go - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+    <title>iOS 11 and Android 8.0 Oreo App Icon Design Template - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -39,7 +39,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/04/25/Project-Structure-Go/">
+    <link rel="canonical" href="http://localhost:4000/2017/09/20/Icon-Template/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,13 +173,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/2017-04-25_cover.jpg" width="0" height="0"> -->
+<!-- <img src="/img/2017-09-19_cover.png" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/2017-04-25_cover.jpg')
+        background-image: url('/img/2017-09-19_cover.png')
     }
 
     
@@ -199,19 +199,21 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Go" title="Go">Go</a>
+                        <a class="tag" href="/tags/#Design" title="Design">Design</a>
                         
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
                         
-                        <a class="tag" href="/tags/#Project Management" title="Project Management">Project Management</a>
+                        <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                        <a class="tag" href="/tags/#Template" title="Template">Template</a>
                         
                     </div>
-                    <h1>Putting projects where you want with Go</h1>
+                    <h1>iOS 11 and Android 8.0 Oreo App Icon Design Template</h1>
                     
                     
-                    <h2 class="subheading">Screw you gopher, and your workspace!</h2>
+                    <h2 class="subheading">Sketch template for designing App Icons</h2>
                     
-                    <span class="meta">Posted by Tom on April 25, 2017</span>
+                    <span class="meta">Posted by Tom on September 20, 2017</span>
                 </div>
             </div>
         </div>
@@ -231,88 +233,80 @@
 
 				<h1 id="overview">Overview</h1>
 
-<p>Since picking up Go I’ve been a bit resistant to some of its ways, particularly the way it manages projects. As someone who obsessively organises their projects into nicely-defined directories, I was a bit taken-a-back by Go’s unconventional workspace structure. I typically don’t like to use the pre-defined workspace folders of IDEs like Visual Studio or Jetbrains products.</p>
+<p><img src="https://imgur.com/Ht7tVah.png" alt="iOS 11 Android Oreo" /></p>
 
-<p>On a recent project I decided enough is enough, i’m taking back my filesystem and there’s nothing Go can do to stop me! I wanted to see if I could symlink my project directory into Go’s workspace path. And, it works! You can sym link your project’s folder, e.g. <code class="highlighter-rouge">'Example/'</code> into your GOPATH src folder, e.g. <code class="highlighter-rouge">'$HOME/go/src/Example'</code>.</p>
+<p>Designing an App Icon on an empty white page makes it difficult to see how it will look when found on the App Store or Google Play. You want your icon to stand out amongst the sea of colours and badges so that users are interested enough to take a closer look.</p>
 
-<p>If you know how to do this and like the idea, then great! Go forth and liberate your filesystem!</p>
+<p>The following template has been designed for iOS 11 and Android O icons. App icons are stored edited as sketch symbols which automatically update on the preview templates, so you only need to change one artboard to see your changes across all devices and app stores.</p>
 
-<p>If not, I’m going to outline below how to set up a nice Go environment on your system that uses this method.</p>
-
-<hr />
-
-<h1 id="setting-your-go-path">Setting your Go Path</h1>
-
-<p>The GoPath is set to your home directory at $Home/go by default. For this example we’re going to stick with this location, but you could move this to some deep dark hole where you never have to see it again. To see where the go path is set to, enter this into your terminal:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>go env GOPATH
-</code></pre>
-</div>
-
-<p>If it is set to your home directory, you should see:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>/Users/[your-username]/go
-</code></pre>
-</div>
-
-<p>If it is not set here, enter the following:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>export GOPATH=$HOME/go
-</code></pre>
-</div>
-
-<p>You can verify the gopath has been set correctly by again entering:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>go env GOPATH
-</code></pre>
-</div>
-
-<h1 id="creating-the-workspace">Creating the Workspace</h1>
-
-<p>Next we create the following directory structure:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>$HOME
-- go
-  - bin/
-  - pkg/
-  - src/
-</code></pre>
-</div>
-
-<h1 id="setting-up-a-new-project">Setting Up a New Project</h1>
-
-<p>We’re going to set up a project called <em>MyProject</em> and save it to a projects folder in our home directory, or wherever you’d like to store your project.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>mkdir ~/Projects
-mkdir ~/Projects/MyProject
-touch ~/Projects/MyProject/Main.go
-</code></pre>
-</div>
-
-<p>We’ll create a quick <em>Hello World</em> program to show that we can build our application. Open Main.go in <code class="highlighter-rouge">~/Projects/MyProject</code> and enter:</p>
-
-<div class="language-go highlighter-rouge"><pre class="highlight"><code><span class="k">package</span><span class="x"> </span><span class="n">main</span><span class="x">
-
-</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
-  </span><span class="s">"log"</span><span class="x">
-</span><span class="p">)</span><span class="x">
-
-</span><span class="k">func</span><span class="x"> </span><span class="n">main</span><span class="p">()</span><span class="x"> </span><span class="p">{</span><span class="x">
-  </span><span class="n">log</span><span class="o">.</span><span class="n">Printf</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)</span><span class="x">
-</span><span class="p">}</span><span class="x">
-</span></code></pre>
-</div>
-
-<p>Next we create a symbolic link to our projects folder in go’s workspace:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>ln -s ~/Projects/MyProject ~/go/src/MyProject
-</code></pre>
-</div>
+<p><a href="https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html">Download Sketch Template</a></p>
 
 <hr />
 
-<p>I hope some people find this useful. Its obviously not rocket science but it might not be obvious if you want to avoid Go’s workspace.</p>
+<h1 id="icon-design">Icon Design</h1>
 
-<p>—— Tom 2017.04</p>
+<p><img src="https://imgur.com/txD6ora.png" alt="Icon Design" /></p>
+
+<p>The first page of the template allows you to design the Icons for Android and iOS at the maximum recommended resolution (512x512 for iOS and 1024x1024 for Android). It also includes additional sizes recommended by Apple and Google.</p>
+
+<p>For iOS this is quite straightforward. Size are:</p>
+
+<ul>
+  <li>Play Store - 512x512</li>
+  <li>xxxhdpi - 192x192</li>
+  <li>xxhdpi - 144x144</li>
+  <li>xhdpi - 96x96</li>
+  <li>hdpi - 72x72</li>
+  <li>mdpi - 48x48</li>
+</ul>
+
+<p>iOS icons are a considerably more exhaustive, with different sizes for iPhone and iPad icons, including Settings Screen, Spotlight Search and Notification icons:</p>
+
+<ul>
+  <li>App Store - 1024x1024</li>
+  <li>iPhone 3x - 180x180</li>
+  <li>iPhone 2x - 152x152</li>
+  <li>iPad 3x - 167x167</li>
+  <li>iPad 2x - 152x152</li>
+  <li>iPhone/iPad Settings 3x - 87x87</li>
+  <li>iPhone/iPad Settings 2x - 58x58</li>
+  <li>Spotlight - 80x80</li>
+  <li>Notifications - 40x40</li>
+</ul>
+
+<p>Its also worth noting that all iOS icons are masked as rounded-squares (NOT squircles anymore) when they are displayed on the App Store. For the large iOS icon the corner radius is 120 for dimensions 1024x1024. Scale this accordingly for other icon sizes.</p>
+
+<h1 id="app-store-previews">App Store Previews</h1>
+
+<p>The second page of the template shows previews for:</p>
+
+<ul>
+  <li>Google Play on Phone</li>
+  <li>Google Play on Web Browser</li>
+</ul>
+
+<p><img src="https://imgur.com/dRThIHy.png" alt="Google Play Previews" /></p>
+
+<ul>
+  <li>iOS App Store on Phone</li>
+  <li>iOS App Store on iTunes (desktop)</li>
+</ul>
+
+<p><img src="https://imgur.com/ek1G8Fe.png" alt="iOS App Store Previews" /></p>
+
+<p>The icons on the previous page are symbols that automatically update on the app-store previews when you make changes. You can also change the name and category on the previews to your own app.</p>
+
+<p>The example demonstrates how you might design the same icon in both Android and iOS styles, with Android favouring flat colours and long-shadows, while iOS icons typically use few shadows and colourful gradients. These are of course just guidelines that both companies frequently break with their own designs, so its important to be creative if you want to stand out.</p>
+
+<h1 id="download">Download</h1>
+
+<p>You can get the template here from Sketch App Sources:</p>
+
+<p><a href="https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html">Download Sketch Template</a></p>
+
+<hr />
+
+<p>—— Tom 2017.09</p>
 
 
                 <hr style="visibility: hidden;">
@@ -323,9 +317,9 @@ touch ~/Projects/MyProject/Main.go
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/03/23/React-js-Crashcourse/" data-toggle="tooltip" data-placement="top" title="CrashCourse: React js from start to deployment">
+                        <a href="/2017/08/30/Reverse-Proxy/" data-toggle="tooltip" data-placement="top" title="Hosting Multiple Websites on the same Server">
                         Previous<br>
-                        <span>CrashCourse: React js from start to deployment</span>
+                        <span>Hosting Multiple Websites on the same Server</span>
                         </a>
                     </li>
                     
@@ -378,6 +372,10 @@ touch ~/Projects/MyProject/Main.go
                     <div class="tags">
         				
                             
+                				<a href="/tags/#iOS" title="iOS" rel="2">
+                                    iOS
+                                </a>
+                            
         				
                             
         				
@@ -397,6 +395,24 @@ touch ~/Projects/MyProject/Main.go
         				
                             
         				
+                            
+        				
+                            
+                				<a href="/tags/#Go" title="Go" rel="2">
+                                    Go
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#shell" title="shell" rel="2">
+                                    shell
+                                </a>
+                            
+        				
+                            
+                				<a href="/tags/#Project Management" title="Project Management" rel="2">
+                                    Project Management
+                                </a>
                             
         				
                             
@@ -433,8 +449,8 @@ touch ~/Projects/MyProject/Main.go
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "code-base-camp";
-    var disqus_identifier = "/2017/04/25/Project-Structure-Go";
-    var disqus_url = "http://localhost:4000/2017/04/25/Project-Structure-Go/";
+    var disqus_identifier = "/2017/09/20/Icon-Template";
+    var disqus_url = "http://localhost:4000/2017/09/20/Icon-Template/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

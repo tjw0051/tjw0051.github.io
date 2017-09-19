@@ -10,7 +10,7 @@
     <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
     <meta name="theme-color" content="#000000">
 
-    <title>Classes and Events in node.js - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+    <title>Hosting Multiple Websites on the same Server - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -39,7 +39,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/">
+    <link rel="canonical" href="http://localhost:4000/2017/08/30/Reverse-Proxy/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,13 +173,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/2017-01-08_cover.jpg" width="0" height="0"> -->
+<!-- <img src="/img/2017-08-30_cover.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/2017-01-08_cover.jpg')
+        background-image: url('/img/2017-08-30_cover.jpg')
     }
 
     
@@ -199,21 +199,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Javascript" title="Javascript">Javascript</a>
+                        <a class="tag" href="/tags/#Go" title="Go">Go</a>
                         
-                        <a class="tag" href="/tags/#node.js" title="node.js">node.js</a>
+                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
                         
-                        <a class="tag" href="/tags/#Classes" title="Classes">Classes</a>
-                        
-                        <a class="tag" href="/tags/#Events" title="Events">Events</a>
+                        <a class="tag" href="/tags/#Project Management" title="Project Management">Project Management</a>
                         
                     </div>
-                    <h1>Classes and Events in node.js</h1>
+                    <h1>Hosting Multiple Websites on the same Server</h1>
                     
                     
-                    <h2 class="subheading">Exporting classes, receiving events, emitting events.</h2>
+                    <h2 class="subheading">Reverse Proxies with Nginx</h2>
                     
-                    <span class="meta">Posted by Tom on January 8, 2017</span>
+                    <span class="meta">Posted by Tom on August 30, 2017</span>
                 </div>
             </div>
         </div>
@@ -233,183 +231,145 @@
 
 				<h1 id="overview">Overview</h1>
 
-<p>Since the release of ECMAScript 6 it is now possible to create classes in a more conventional object-oriented way. A previous method of creating ‘classes’ in Javascript was to define a function as a class, with variables stored in the object via <code class="highlighter-rouge">this</code> and sub-functions to the ‘class’ or to the prototype, like so:</p>
+<p>For setting up small projects you often find that a single server is sufficiently powerful to serve websites or services that are infrequently used. For setting up a single website on a server, you might have spun up a node or apache server, set it to listen on port 80, and forwarded your domain name (e.g. mywebsite.com) to your server’s IP address (27.0.3.4). When someone visits your website, they browse to mywebsite.com, send a GET or other request to your web server, which returns web pages for your website.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">CarClass</span> <span class="p">(</span><span class="nx">constructorVariable</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span> <span class="o">=</span> <span class="nx">constructorVariable</span><span class="p">;</span>
+<p>It becomes apparent that this is a problem if you have multiple domains pointed to the same server. For example if you have 2 node.js servers running, the first serving pages for mywebsite.com, and the second for notmywebsite.com, the server will not know which website the user typed into their browser, as both domain names point to your server. Furthermore you can’t bind both servers to port 80 in most cases. The solution is a reverse-proxy.</p>
 
-    <span class="kd">function</span> <span class="nx">myMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">methodParameter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">CarClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">protoMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre>
-</div>
-
-<p>The same class defined in ES6 could look like this:</p>
-
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">CarClass</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">constructorVariable</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span> <span class="o">=</span> <span class="nx">constructorVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="nx">myMethod</span><span class="p">(</span><span class="nx">methodParameter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">internalVariable</span><span class="p">;</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
-
-<p>For a more detailed description of classes in ES6, check out <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes">Mozilla’s very helpful Javascript Reference</a>.</p>
-
-<p>I had a situation recently where I had to send and receive events from a class which turned out to be more confusing than I initially thought. Being rather new to Javascript but familiar with more object-oriented languages, I made some incorrect assumptions about how classes work in Javascript and spent a good amount of time scouring stack overflow for the wrong questions.</p>
-
-<p>Without further ado, here’s some quick snippets on how to implement some common event features with classes.</p>
+<p>Nginx is a hugely popular http server, whos first introduction to most people is as a proxy server for our situation. A proxy server is a server that <a href="https://en.wikipedia.org/wiki/Proxy_server">acts as an intermediary for requests from clients seeking resources from other servers.</a>. In this case our requests from clients are our websites (mywebsite.com and notmywebsite.com) and the resources are the web pages our two apache/node/etc instances are serving.</p>
 
 <hr />
 
-<h1 id="sending-events-from-classes">Sending Events from Classes</h1>
+<h1 id="installing-nginx">Installing Nginx</h1>
 
-<p>This is pretty straightforward and not unlike many other languages. Firstly lets get the events module:</p>
+<p>This installation will assume you are installing Nginx on Ubuntu 14.04 or 16.04. If that is not the case it is recommended that you find a seperate installation guide for this step to avoid any problems.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">EventEmitter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'events'</span><span class="p">).</span><span class="nx">EventEmitter</span><span class="p">;</span>
+<p>Installing Nginx on a fresh ubuntu 14.04 or 16.04 should be straightforward. First we update the package manager then install nginx:</p>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install nginx-full
 </code></pre>
 </div>
 
-<p>Next we create our class and give it a constructor. Its important to note that if you create a constructor and leave it empty, it will throw errors. If you don’t need a constructor don’t include one:</p>
+<h1 id="configuring-nginx">Configuring Nginx</h1>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Don't leave this empty</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-        
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>For this example we’ll be configuring two websites, but it should be trivial to configure more.</p>
+
+<p>Nginx stores host configurations in <code class="highlighter-rouge">/etc/nginx/sites-available/</code>. After installation, a default configuration will be created in this directory. Delete this file as we’ll be creating our own configurations:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo rm /etc/nginx/sites-enabled/default
 </code></pre>
 </div>
 
-<p>To send events from our class we need to extend the EventEmitter class:</p>
+<p>Next create two files in this directory for our two websites (substitute the names for those of your websites):</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo touch /etc/nginx/sites-available/mywebsite.com
+sudo touch /etc/nginx/sites-available/notmywebsite.com
 </code></pre>
 </div>
 
-<p>For extending the Event Emitter we also need to call the constructor of the superclass in our constructor:</p>
+<p>Before the next step you’ll need to configure your server’s ports. if you’ve set up a web server you might be exposing it on port 80. For both applications, change these to ports that are NOT 80 and not already in use. Picking ports &gt; 2000 is a safe bet. The servers also cannot use the same port. For my node.js servers, i’ll be setting the following ports:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlighter-rouge"><pre class="highlight"><code>mywebsite.com    -&gt; :8081
+notmywebsite.com -&gt; :8082
 </code></pre>
 </div>
 
-<p>Finally, lets add another method to the class and make it fire off an event:</p>
+<p>In node (using express) this would be done by <code class="highlighter-rouge">app.listen(8081)</code> for my first server, and <code class="highlighter-rouge">app.listen(8082)</code> for the second server. The reason for this will become clear in the next step.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-    <span class="p">}</span>
+<h1 id="defining-nginx-hosts">Defining Nginx Hosts</h1>
 
-    <span class="nx">openDoor</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<p>Next we’re going to edit the host files we created earlier and add our configuration. Open <code class="highlighter-rouge">/etc/nginx/sites-available/mywebsite.com</code> using your favourite text editor:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo nano /etc/nginx/sites-available/mywebsite.com
 </code></pre>
 </div>
 
-<p>When the class is instantiated and the <code class="highlighter-rouge">openDoor()</code> method is called, the class will emit the ‘doorOpen’ event, passing the name of the vehicle that was defined in the constructor.</p>
+<p>Input the following configuration:</p>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>server <span class="o">{</span>
+    listen 80;
 
-<p>We also need to make our class accessible by other scripts. At the end of the script, add the following line to export the module:</p>
+    server_name mywebsite.com www.mywebsite.com;
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">Car</span><span class="p">;</span>
+    location / <span class="o">{</span>
+        proxy_pass http://127.0.0.1:8081;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade <span class="nv">$http_upgrade</span>;
+        proxy_set_header Connection <span class="s1">'upgrade'</span>;
+        proxy_set_header Host <span class="nv">$host</span>;
+        proxy_cache_bypass <span class="nv">$http_upgrade</span>;
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 </div>
 
-<p>To receive events from our class, make a new script and import the module we just created:</p>
+<p>Change the <code class="highlighter-rouge">server_name</code> line to your website address, with 2 versions, one with and one without the <code class="highlighter-rouge">www</code>. Change the <code class="highlighter-rouge">proxy_pass</code> line where it says <code class="highlighter-rouge">8081</code> to whichever port you decided to use for your first website. Save the file and close it.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./Car.js'</span><span class="p">);</span>
-
-<span class="kd">var</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'mclaren'</span><span class="p">);</span>
+<p>Next open up our second host file:</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo nano /etc/nginx/sites-available/notmywebsite.com
 </code></pre>
 </div>
 
-<p>Next we create a handler to fire when the <code class="highlighter-rouge">openDoor()</code> module is called:</p>
+<p>…and input the following:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'./Car.js'</span><span class="p">);</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>server <span class="o">{</span>
+    listen 80;
 
-<span class="kd">var</span> <span class="nx">myCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'mclaren'</span><span class="p">);</span>
+    server_name notmywebsite.com www.notmywebsite.com;
 
-<span class="nx">myCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-   <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened'</span><span class="p">);</span> 
-<span class="p">});</span>
+    location / <span class="o">{</span>
+        proxy_pass http://127.0.0.1:8082;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade <span class="nv">$http_upgrade</span>;
+        proxy_set_header Connection <span class="s1">'upgrade'</span>;
+        proxy_set_header Host <span class="nv">$host</span>;
+        proxy_cache_bypass <span class="nv">$http_upgrade</span>;
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
 </div>
 
-<p>Now we can open the car door, triggering the callback:</p>
+<p>Again change the <code class="highlighter-rouge">server_name</code> line to match those for your second website, and change the port of the <code class="highlighter-rouge">proxy_pass</code> line from <code class="highlighter-rouge">8082</code> to whatever the port is that you set for your second server. Save and close the file.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">myCar</span><span class="p">.</span><span class="nx">openDoor</span><span class="p">();</span>
+<h1 id="loading-the-new-configuration">Loading the New Configuration</h1>
+
+<p>Nginx has a handy tool for testing if a configuration has been created correctly. Run the following command:</p>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo nginx -t
 </code></pre>
 </div>
 
-<h1 id="receiving-events-inside-a-class">Receiving Events inside a Class</h1>
+<p>If the output says the syntax is OK and test is successful then we can proceed. If not, go back through the previous step to see if theres anything you might have missed.</p>
 
-<p>Another situation I encountered was trying to receive events within a class. A good place to set these up (unless we want to create callbacks from a method) is in the constructor:</p>
+<p>Next we reload the Nginx service to use our new configuration:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Car</span> <span class="kr">extends</span> <span class="nx">EventEmitter</span> <span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened'</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo systemctl reload nginx
 </code></pre>
 </div>
 
-<p>Now when the doorOpen event is fired from the testCar, the code within our callback will be executed.</p>
+<p>Our server should now be set up correctly. If your web servers aren’t already running, run them now.</p>
 
-<h1 id="referencing-class-variables-inside-closure">Referencing Class Variables inside Closure</h1>
+<h1 id="configuring-dns">Configuring DNS</h1>
 
-<p>Say we wanted to print the name of the car from inside the testCar.on callback. Intuition says the way to do this is:</p>
+<p>Next you’ll need to go to your DNS and create A records for your domain names that point to your server’s address. This is going to be specific to whatever DNS you’re using but here’s an example of my setup from DigitalOcean to give you an idea:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<p><img src="http://imgur.com/1wOOU9Q.png" alt="MyWebsite.com" /></p>
 
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened on: '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
+<p><img src="http://imgur.com/hZKveYK.png" alt="NotMyWebsite.com" /></p>
 
-<p>However, this won’t print the name of the enclosing vehicle, because the scope of <code class="highlighter-rouge">this</code> is limited to within the closure, and cannot access the outside class. Therefore we need to store a reference to the enclosing class so that we can access it from within the closure:</p>
+<p>In the examples above, the records for both <code class="highlighter-rouge">mywebsite.com</code> and <code class="highlighter-rouge">notmywebsite.com</code> point to my server’s IP address <code class="highlighter-rouge">178.60.100.102</code>.</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code> <span class="nx">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// mclaren</span>
-        <span class="kr">super</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<h1 id="test-it">Test It</h1>
 
-        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<p>If you’ve set up nginx and reloaded the configuration, started your web servers, and forwarded your domain names to point to your server’s address, its time to test it out. Open a web browser and navigate to your two websites. You should be served the correct web pages for the website you accessed. If not, re-check the configuration in the above steps and make sure you’ve set the correct ports.</p>
 
-        <span class="kd">var</span> <span class="nx">testCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">'ferrari'</span><span class="p">);</span>
-        <span class="nx">testCar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'doorOpen'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-           <span class="nx">console</span><span class="p">.</span><span class="nx">print</span><span class="p">(</span><span class="s1">'Door has been opened on: '</span> <span class="o">+</span> <span class="nx">self</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> 
-        <span class="p">});</span>
-    <span class="p">}</span>
-</code></pre>
-</div>
+<p>It may also take some time for your DNS records to be updated, so wait 5 minutes then try again. Additionally make sure that if you have any caching layers (e.g. Cloudflare Always Online™ or other), purge the cache so that the changes are propogated.</p>
 
-<p>Now the name of the enclosing class (mclaren) will be printed to the console. This is also sometimes referred to as the this-that trick.</p>
+<hr />
 
-<p>—— Tom 2017.01</p>
+<h1 id="conclusion">Conclusion</h1>
+
+<p>I hope this guide has helped you set up nginx and save a little money by hosting multiple websites on the same server.</p>
+
+<p>If you’re interested in going a step further and securing your server with HTTPS/TLS I highly recommend <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">this</a> guide by DigitalOcean.</p>
+
+<p>—— Tom 2017.08</p>
 
 
                 <hr style="visibility: hidden;">
@@ -420,17 +380,17 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/12/02/Expandable-TableView/" data-toggle="tooltip" data-placement="top" title="iOS Expandable Table View Cells">
+                        <a href="/2017/04/25/Project-Structure-Go.1/" data-toggle="tooltip" data-placement="top" title="Putting projects where you want with Go">
                         Previous<br>
-                        <span>iOS Expandable Table View Cells</span>
+                        <span>Putting projects where you want with Go</span>
                         </a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2017/03/23/React-js-Crashcourse/" data-toggle="tooltip" data-placement="top" title="CrashCourse: React js from start to deployment">
+                        <a href="/2017/09/20/Icon-Template/" data-toggle="tooltip" data-placement="top" title="iOS 11 and Android 8.0 Oreo App Icon Design Template">
                         Next<br>
-                        <span>CrashCourse: React js from start to deployment</span>
+                        <span>iOS 11 and Android 8.0 Oreo App Icon Design Template</span>
                         </a>
                     </li>
                     
@@ -559,8 +519,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "code-base-camp";
-    var disqus_identifier = "/2017/01/08/Working-With-Classes-in-Javascript";
-    var disqus_url = "http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/";
+    var disqus_identifier = "/2017/08/30/Reverse-Proxy";
+    var disqus_url = "http://localhost:4000/2017/08/30/Reverse-Proxy/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
