@@ -10,7 +10,7 @@
     <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
     <meta name="theme-color" content="#000000">
 
-    <title>Hosting Multiple Websites on the same Server - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+    <title>Getting a Perfect 100/100 Google PageSpeed Score with an S3 Static Website - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -39,7 +39,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.codebasecamp.com/2017/08/30/Reverse-Proxy/">
+    <link rel="canonical" href="https://www.codebasecamp.com/2017/10/03/Perfect-PageSpeed/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,13 +173,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/2017-08-30_cover.jpg" width="0" height="0"> -->
+<!-- <img src="/img/2017-10-03_cover.png" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/2017-08-30_cover.jpg')
+        background-image: url('/img/2017-10-03_cover.png')
     }
 
     
@@ -199,19 +199,19 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Go" title="Go">Go</a>
+                        <a class="tag" href="/tags/#Web" title="Web">Web</a>
                         
-                        <a class="tag" href="/tags/#shell" title="shell">shell</a>
+                        <a class="tag" href="/tags/#SEO" title="SEO">SEO</a>
                         
-                        <a class="tag" href="/tags/#Project Management" title="Project Management">Project Management</a>
+                        <a class="tag" href="/tags/#Optimisation" title="Optimisation">Optimisation</a>
                         
                     </div>
-                    <h1>Hosting Multiple Websites on the same Server</h1>
+                    <h1>Getting a Perfect 100/100 Google PageSpeed Score with an S3 Static Website</h1>
                     
                     
-                    <h2 class="subheading">Reverse Proxies with Nginx</h2>
+                    <h2 class="subheading">How to Spaghettify your Website beyond Recognition</h2>
                     
-                    <span class="meta">Posted by Tom on August 30, 2017</span>
+                    <span class="meta">Posted by Tom on October 3, 2017</span>
                 </div>
             </div>
         </div>
@@ -229,147 +229,143 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="overview">Overview</h1>
+				<p><img src="https://imgur.com/J9CY0dl.png" alt="Perfect PageSpeed" /></p>
 
-<p>For setting up small projects you often find that a single server is sufficiently powerful to serve websites or services that are infrequently used. For setting up a single website on a server, you might have spun up a node or apache server, set it to listen on port 80, and forwarded your domain name (e.g. mywebsite.com) to your server’s IP address (27.0.3.4). When someone visits your website, they browse to mywebsite.com, send a GET or other request to your web server, which returns web pages for your website.</p>
+<p><a href="https://developers.google.com/speed/pagespeed/insights/">Google PageSpeed</a> is a tool for testing the performance of websites for mobile and desktop, and plays some part in how Google’s algorithms rank your website. Page speed isn’t everything but I got obsessed with the idea of achieving a perfect 100/100 score for both mobile and desktop, so I set out to achieve it on a small landing page for one of my mobile apps.</p>
 
-<p>It becomes apparent that this is a problem if you have multiple domains pointed to the same server. For example if you have 2 node.js servers running, the first serving pages for mywebsite.com, and the second for notmywebsite.com, the server will not know which website the user typed into their browser, as both domain names point to your server. Furthermore you can’t bind both servers to port 80 in most cases. The solution is a reverse-proxy.</p>
+<p>I’ll be tailoring this guide to websites hosted on <a href="https://aws.amazon.com/s3">Amazon Web Services S3</a> and <a href="https://aws.amazon.com/cloudfront">Cloudfront</a>. If you’re unfamiliar with this hosting method I highly recommend checking out <a href="https://medium.com/@esfoobar/setting-up-an-https-static-site-using-amazon-aws-7ab270c4e277">Jorge Escobar’s guide here</a> which covers hosting on S3, distributing through the Cloudfront CDN and setting up SSL/TLS/HTTPS. Hosting a static site on S3 can be very cost-effective; hosting multiple sites for &lt; $5 month is not unusual. With Amazon’s free-tier it may even be free for you.</p>
 
-<p>Nginx is a hugely popular http server, whos first introduction to most people is as a proxy server for our situation. A proxy server is a server that <a href="https://en.wikipedia.org/wiki/Proxy_server">acts as an intermediary for requests from clients seeking resources from other servers.</a>. In this case our requests from clients are our websites (mywebsite.com and notmywebsite.com) and the resources are the web pages our two apache/node/etc instances are serving.</p>
+<p>After you’ve set up your website through S3, go to <a href="https://developers.google.com/speed/pagespeed/insights/">PageSpeed Insights</a>, input your website and hit analyze.</p>
+
+<p><img src="https://imgur.com/AgWfqx5.png" alt="Youtube's PageSpeed Score" /></p>
+
+<p><em>Yes, that’s youtube with a score of 46 for mobile and 76 for desktop. Funnily enough, Vimeo gets 93 mobile / 80 desktop. I hear another <a href="https://www.theverge.com/2017/6/27/15872354/google-eu-fine-antitrust-shopping">anti-trust fine</a> a’brewin</em></p>
+
+<p>Rather helpfully PageSpeed provides insights into how to improve your website’s score. I’ll break down each of the Possible Optimisations below into seperate sections with advice on how to fix them for an S3-hosted website.</p>
+
+<h2 id="optimise-images">Optimise Images</h2>
+
+<p><img src="https://imgur.com/clbcCHU.png" alt="Optimised Images" /></p>
+
+<p>This is one of the easiest things to fix and should give one of the biggest boosts in both performance and PageSpeed score. PageSpeed automatically compresses and resizes your images for you and provides a download link at the bottom. Click the link, download the images and replace your websites images with Google’s optimised versions.</p>
+
+<h2 id="minify-javascripthtmlcss">Minify Javascript/HTML/CSS</h2>
+
+<p>Minification removes unneccessary whitespace and characters to make the overall filesize smaller. This is also pretty easy to fix, you can use the optimised versions provided by google, the same as with the images, or you can use a tool like <a href="https://gulpjs.com">Gulp</a> or even an in-browser tool like <a href="http://www.minifier.org">minifier.org</a>. Replace your files with the minified versions and the warning should disappear.</p>
+
+<p><img src="https://imgur.com/N1s04CN.png" alt="Minification" /></p>
+
+<h2 id="avoid-landing-page-redirects">Avoid Landing Page Redirects</h2>
+
+<p>If you’re receiving this issue on an S3 site make sure you have your DNS set up correctly (Route53 if you used the guide mentioned earlier). Your domain name should point to your Cloudfront Distribution, which should point to your S3 bucket. Here’s a screenshot of my configuration:</p>
+
+<p><strong>Route53 Setup</strong></p>
+
+<p><img src="https://imgur.com/hMljEl4.png" alt="Route53 Setup" /></p>
+
+<p><strong>Cloudfront Setup</strong></p>
+
+<p><img src="https://imgur.com/BY8YgFx.png" alt="Cloudfront Setup" /></p>
+
+<p><strong>S3 Setup</strong></p>
+
+<p><img src="https://imgur.com/s1wooI0.png" alt="S3 Setup" /></p>
+
+<h2 id="leverage-browser-caching">Leverage Browser Caching</h2>
+
+<p>Another slightly more difficult configuration is setting up caching. This enables client-side caching so that resources are stored by a user’s browser for a duration.</p>
+
+<p>There are two ways you can set this up: on the S3 Console or via the S3 upload command.</p>
+
+<p>To change this on the console, select all items in your website’s S3 bucket, click ‘More’ &gt; ‘Change metadata’.</p>
+
+<p><img src="https://imgur.com/9JmqVhV.png" alt="Select all bucket items" /></p>
+
+<p>Add a new item with key ‘Cache-Control’. Set the value to ‘max-age:[seconds]’. This is the how long the item will be cached client-side before expiring, and a new copy is downloaded by the client. This needs to be a big number, if you set something like 2 hours then Google PageSpeed will still nag you. In the example I’ve set it to 2 years (63072000 seconds) which supresses these warnings.</p>
+
+<p><img src="https://imgur.com/yZ7lQGo.png" alt="Add Cache-Control" /></p>
+
+<p>The second way to do this via the S3 upload command with the <code class="highlighter-rouge">--cache-control</code> option. Here’s an example:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>aws s3 cp --recursive index.html s3://ansavoicemail.com/ <span class="se">\</span>
+    --grants <span class="nb">read</span><span class="o">=</span><span class="nv">uri</span><span class="o">=</span>http://acs.amazonaws.com/groups/global/AllUsers <span class="se">\ </span>
+    --cache-control max-age<span class="o">=</span>63072000
+</code></pre>
+</div>
 
 <hr />
 
-<h1 id="installing-nginx">Installing Nginx</h1>
+<p>Remember to invalidate the Cloudfront cache after you make changes to your S3 bucket, so that these changes are propogated to the edge-servers, otherwise Cloudfront will be serving the old version of your files. There are better ways to do this but if you want to quickly refresh all files, go to Cloudfront, select your distribution, go to the <code class="highlighter-rouge">Invalidations</code> tab, click <code class="highlighter-rouge">Create Invalidation</code>. In the <code class="highlighter-rouge">Object Paths</code> box put <code class="highlighter-rouge">*</code>. Click <code class="highlighter-rouge">Invalidate</code>.</p>
 
-<p>This installation will assume you are installing Nginx on Ubuntu 14.04 or 16.04. If that is not the case it is recommended that you find a seperate installation guide for this step to avoid any problems.</p>
+<p><img src="https://imgur.com/oxME6iM.png" alt="Invalidating Cloudfront Cache" /></p>
 
-<p>Installing Nginx on a fresh ubuntu 14.04 or 16.04 should be straightforward. First we update the package manager then install nginx:</p>
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
-sudo apt-get install nginx-full
+<h2 id="eliminate-render-blocking-javascript-and-css-in-above-the-fold-content">Eliminate render-blocking JavaScript and CSS in above-the-fold Content</h2>
+
+<p>This is perhaps the most difficult optimisation as its highly dependent on your websites layout and content. This warning occurs because your website is loading external resources above-the-fold (the top-section of your website that is visible when it loads). For example you may be loading bootstrap or ajax from their respective CDNs, which is slowing down your rendering.</p>
+
+<p>Firstly try to remove any unused external resources, or move them locally into your s3 bucket if possible. If you’re using bootstrap or another framework, you’re probably only using a fraction of the CSS it provides. You can try to extract only the CSS selectors that are being utilised. Check out <a href="https://chrome.google.com/webstore/detail/css-used/cdopjfddjlonogibjahpnmjpoangjfff?hl=en">CSS Used for Google Chrome</a> Run it on your site, copy the CSS it gives you, run it through a CSS minifier and save it. If you only have a small amount of CSS you can include it in-line on your site. In the <code class="highlighter-rouge">&lt;head&gt;</code> section of your site add the minified css between <code class="highlighter-rouge">&lt;style&gt;</code> tags:</p>
+
+<div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">style</span><span class="o">&gt;</span>
+<span class="nc">.nav</span><span class="p">{</span><span class="nl">margin-top</span><span class="p">:</span><span class="m">2rem</span><span class="p">;</span><span class="nl">margin-bottom</span><span class="p">:</span><span class="m">2rem</span><span class="p">}</span>
+<span class="o">...</span>
+<span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
 </code></pre>
 </div>
 
-<h1 id="configuring-nginx">Configuring Nginx</h1>
+<p>A common pitfall of this step is Google Analytics which throws the ‘Eliminate render-blocking…’ warning. To remedy this, download Google Analytics from https://www.google-analytics.com/analytics.js and store it with your site in S3. I also found that this script was re-downloading analytics.js from Google, so CTRL+F in analytics.js and replace any references to the above URL with your local file:</p>
 
-<p>For this example we’ll be configuring two websites, but it should be trivial to configure more.</p>
-
-<p>Nginx stores host configurations in <code class="highlighter-rouge">/etc/nginx/sites-available/</code>. After installation, a default configuration will be created in this directory. Delete this file as we’ll be creating our own configurations:</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo rm /etc/nginx/sites-enabled/default
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>https://www.google-analytics.com/analytics.js
+replace with e.g. -&gt;
+js/analytics.js
 </code></pre>
 </div>
 
-<p>Next create two files in this directory for our two websites (substitute the names for those of your websites):</p>
+<p>You may also have a Google Tag Manager script, something like this:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo touch /etc/nginx/sites-available/mywebsite.com
-sudo touch /etc/nginx/sites-available/notmywebsite.com
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">'https://www.googletagmanager.com/gtag/js?id=UA-01234567-1'</span><span class="nt">&gt;</span><span class="err">
+</span></code></pre>
+</div>
+
+<p>Go to the URL, download the script, save it locally. Run CTRL+F again and replace any references to <code class="highlighter-rouge">https://www.google-analytics.com/analytics.js</code> with your local copy.</p>
+
+<h2 id="enable-compression">Enable Compression</h2>
+
+<p>As S3 isn’t a normal webserver it wastes no processing power in gzip compressing files for you, so you need to do this manually before you upload them.</p>
+
+<p>You should only compress html, css and javascript files with gzip. To do this on Mac and Linux run gzip -9 and then the filename:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gzip -9 -k -f *.html
+gzip -9 -k -f *.js
+gzip -9 -k -f *.css
+</code></pre>
+</div>
+<p><code class="highlighter-rouge">-9</code> is for maximum level of compression, <code class="highlighter-rouge">-k</code> keeps the original file, <code class="highlighter-rouge">-f</code> is force, so we replace our previous compression without the ‘are you sure…’ prompt.</p>
+
+<p>If you compress <code class="highlighter-rouge">index.html</code> you should get <code class="highlighter-rouge">index.html.gz</code> out. We need to upload these compressed files to S3 with the compression type included in the metadata, so that the client knows to decompress the files before showing them in the browser.</p>
+
+<p>You can add the compression metadata through the S3 console or with the upload command. The command below shows how you might do this with the <code class="highlighter-rouge">--content-encoding</code> option:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>aws s3 cp --recursive index.html s3://ansavoicemail.com/ --grants <span class="nb">read</span><span class="o">=</span><span class="nv">uri</span><span class="o">=</span>http://acs.amazonaws.com/groups/global/AllUsers --cache-control max-age<span class="o">=</span>63072000 --content-encoding gzip
 </code></pre>
 </div>
 
-<p>Before the next step you’ll need to configure your server’s ports. if you’ve set up a web server you might be exposing it on port 80. For both applications, change these to ports that are NOT 80 and not already in use. Picking ports &gt; 2000 is a safe bet. The servers also cannot use the same port. For my node.js servers, i’ll be setting the following ports:</p>
+<p>Alternatively, in the S3 console, select your compressed files, go to ‘More’ &gt; ‘Change metadata’. Add a new key called ‘Content-Encoding’ with the value ‘gzip’:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>mywebsite.com    -&gt; :8081
-notmywebsite.com -&gt; :8082
-</code></pre>
-</div>
+<p><img src="https://imgur.com/vXUE5Dd.png" alt="Content Encoding Metadata" /></p>
 
-<p>In node (using express) this would be done by <code class="highlighter-rouge">app.listen(8081)</code> for my first server, and <code class="highlighter-rouge">app.listen(8082)</code> for the second server. The reason for this will become clear in the next step.</p>
+<p><strong>NOTE:</strong> Don’t forget to change any references in your html files to the compressed files. For exaple if you’re loading in your JavaScript with <code class="highlighter-rouge">src="css/myscript.min.js"</code>, compress your JavaScript then change the reference to <code class="highlighter-rouge">src="js/myscript.min.css.gz"</code>. Alternatively rename your compressed files to remove the <code class="highlighter-rouge">.gz</code> extension, then you’ll have less problems during development.</p>
 
-<h1 id="defining-nginx-hosts">Defining Nginx Hosts</h1>
+<h2 id="reduce-server-response-time">Reduce Server Response Time</h2>
 
-<p>Next we’re going to edit the host files we created earlier and add our configuration. Open <code class="highlighter-rouge">/etc/nginx/sites-available/mywebsite.com</code> using your favourite text editor:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo nano /etc/nginx/sites-available/mywebsite.com
-</code></pre>
-</div>
+<p>I received this warning while I was making the previous optimisations. Once i’d removed all the other warnings this one dissapeared too. As its hosted on S3 with Amazon’s CDN you’re pretty cutting-edge in terms of deployment. If that doesn’t cut it then you need a consultant, not a tutorial.</p>
 
-<p>Input the following configuration:</p>
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>server <span class="o">{</span>
-    listen 80;
+<p>You might want to try reduce the size of your content. 100MB of optimised images is still 100MB of images; try to defer rendering until the above-the-fold content is rendered or implement some sort of splash-screen to make the site appear to render quicker.</p>
 
-    server_name mywebsite.com www.mywebsite.com;
+<h2 id="conclusion">Conclusion</h2>
 
-    location / <span class="o">{</span>
-        proxy_pass http://127.0.0.1:8081;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade <span class="nv">$http_upgrade</span>;
-        proxy_set_header Connection <span class="s1">'upgrade'</span>;
-        proxy_set_header Host <span class="nv">$host</span>;
-        proxy_cache_bypass <span class="nv">$http_upgrade</span>;
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
+<p>Hopefully these optimisations have improved the speed of your S3 static site to that perfect 100, or as close as you can get. PageSpeed is only a part of SEO and is not worth obsessing over. Getting a perfect 100 involves a lot spaghettification that can cause headaches if you need to make frequent updates. Downloading scripts like Google Analytics to your own server means that you won’t be up-to-date if it changes, unless you set up some additional automation. Unless your website is cripplingly slow, users probably won’t even notice your fine-tuning, but it should help bring in a few new users through search engines.</p>
 
-<p>Change the <code class="highlighter-rouge">server_name</code> line to your website address, with 2 versions, one with and one without the <code class="highlighter-rouge">www</code>. Change the <code class="highlighter-rouge">proxy_pass</code> line where it says <code class="highlighter-rouge">8081</code> to whichever port you decided to use for your first website. Save the file and close it.</p>
-
-<p>Next open up our second host file:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo nano /etc/nginx/sites-available/notmywebsite.com
-</code></pre>
-</div>
-
-<p>…and input the following:</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>server <span class="o">{</span>
-    listen 80;
-
-    server_name notmywebsite.com www.notmywebsite.com;
-
-    location / <span class="o">{</span>
-        proxy_pass http://127.0.0.1:8082;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade <span class="nv">$http_upgrade</span>;
-        proxy_set_header Connection <span class="s1">'upgrade'</span>;
-        proxy_set_header Host <span class="nv">$host</span>;
-        proxy_cache_bypass <span class="nv">$http_upgrade</span>;
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre>
-</div>
-
-<p>Again change the <code class="highlighter-rouge">server_name</code> line to match those for your second website, and change the port of the <code class="highlighter-rouge">proxy_pass</code> line from <code class="highlighter-rouge">8082</code> to whatever the port is that you set for your second server. Save and close the file.</p>
-
-<h1 id="loading-the-new-configuration">Loading the New Configuration</h1>
-
-<p>Nginx has a handy tool for testing if a configuration has been created correctly. Run the following command:</p>
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo nginx -t
-</code></pre>
-</div>
-
-<p>If the output says the syntax is OK and test is successful then we can proceed. If not, go back through the previous step to see if theres anything you might have missed.</p>
-
-<p>Next we reload the Nginx service to use our new configuration:</p>
-
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo systemctl reload nginx
-</code></pre>
-</div>
-
-<p>Our server should now be set up correctly. If your web servers aren’t already running, run them now.</p>
-
-<h1 id="configuring-dns">Configuring DNS</h1>
-
-<p>Next you’ll need to go to your DNS and create A records for your domain names that point to your server’s address. This is going to be specific to whatever DNS you’re using but here’s an example of my setup from DigitalOcean to give you an idea:</p>
-
-<p><img src="http://imgur.com/1wOOU9Q.png" alt="MyWebsite.com" /></p>
-
-<p><img src="http://imgur.com/hZKveYK.png" alt="NotMyWebsite.com" /></p>
-
-<p>In the examples above, the records for both <code class="highlighter-rouge">mywebsite.com</code> and <code class="highlighter-rouge">notmywebsite.com</code> point to my server’s IP address <code class="highlighter-rouge">178.60.100.102</code>.</p>
-
-<h1 id="test-it">Test It</h1>
-
-<p>If you’ve set up nginx and reloaded the configuration, started your web servers, and forwarded your domain names to point to your server’s address, its time to test it out. Open a web browser and navigate to your two websites. You should be served the correct web pages for the website you accessed. If not, re-check the configuration in the above steps and make sure you’ve set the correct ports.</p>
-
-<p>It may also take some time for your DNS records to be updated, so wait 5 minutes then try again. Additionally make sure that if you have any caching layers (e.g. Cloudflare Always Online™ or other), purge the cache so that the changes are propogated.</p>
-
-<hr />
-
-<h1 id="conclusion">Conclusion</h1>
-
-<p>I hope this guide has helped you set up nginx and save a little money by hosting multiple websites on the same server.</p>
-
-<p>If you’re interested in going a step further and securing your server with HTTPS/TLS I highly recommend <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">this</a> guide by DigitalOcean.</p>
-
-<p>—— Tom 2017.08</p>
+<p>—— Tom 2017.10</p>
 
 
                 <hr style="visibility: hidden;">
@@ -380,19 +376,12 @@ notmywebsite.com -&gt; :8082
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/04/25/Project-Structure-Go.1/" data-toggle="tooltip" data-placement="top" title="Putting projects where you want with Go">
-                        Previous<br>
-                        <span>Putting projects where you want with Go</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
                         <a href="/2017/09/20/Icon-Template/" data-toggle="tooltip" data-placement="top" title="iOS 11 and Android 8.0 Oreo App Icon Design Template">
-                        Next<br>
+                        Previous<br>
                         <span>iOS 11 and Android 8.0 Oreo App Icon Design Template</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
@@ -527,8 +516,8 @@ notmywebsite.com -&gt; :8082
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "code-base-camp";
-    var disqus_identifier = "/2017/08/30/Reverse-Proxy";
-    var disqus_url = "https://www.codebasecamp.com/2017/08/30/Reverse-Proxy/";
+    var disqus_identifier = "/2017/10/03/Perfect-PageSpeed";
+    var disqus_url = "https://www.codebasecamp.com/2017/10/03/Perfect-PageSpeed/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
