@@ -10,7 +10,7 @@
     <meta name="keywords"  content="code base camp codebase camp basecamp programming tutorial help guides iOS xCode Swift Android Java">
     <meta name="theme-color" content="#000000">
 
-    <title>iOS 11 and Android 8.0 Oreo App Icon Design Template - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
+    <title>RxJava 1.x - How to Observe on the Main UI Thread - Coding Guides, Tutorials and Help | CodeBaseCamp</title>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/pwa/manifest.json">
@@ -39,7 +39,7 @@
 
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="http://localhost:4000/2017/09/20/Icon-Template/">
+    <link rel="canonical" href="http://localhost:4000/2017/12/27/RxJava-UIThread/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -173,13 +173,13 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/2017-09-19_cover.png" width="0" height="0"> -->
+<!-- <img src="/img/2018-03-27_cover.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
         position: relative;
-        background-image: url('/img/2017-09-19_cover.png')
+        background-image: url('/img/2018-03-27_cover.jpg')
     }
 
     
@@ -187,7 +187,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background: rgba(0,0,0, 0.5);
+        background: rgba(0,0,0, 0.8);
     }
     
 </style>
@@ -199,21 +199,21 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Design" title="Design">Design</a>
-                        
-                        <a class="tag" href="/tags/#iOS" title="iOS">iOS</a>
-                        
                         <a class="tag" href="/tags/#Android" title="Android">Android</a>
                         
-                        <a class="tag" href="/tags/#Template" title="Template">Template</a>
+                        <a class="tag" href="/tags/#Java" title="Java">Java</a>
+                        
+                        <a class="tag" href="/tags/#RxJava" title="RxJava">RxJava</a>
+                        
+                        <a class="tag" href="/tags/#quick-tip" title="quick-tip">quick-tip</a>
                         
                     </div>
-                    <h1>iOS 11 and Android 8.0 Oreo App Icon Design Template</h1>
+                    <h1>RxJava 1.x - How to Observe on the Main UI Thread</h1>
                     
                     
-                    <h2 class="subheading">Sketch template for designing App Icons</h2>
+                    <h2 class="subheading">An alternative to AndroidSchedulers.mainThread() for RxJava 1.x</h2>
                     
-                    <span class="meta">Posted by Tom on September 20, 2017</span>
+                    <span class="meta">Posted by Tom on December 27, 2017</span>
                 </div>
             </div>
         </div>
@@ -231,82 +231,56 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="overview">Overview</h1>
+				<p>This is a quick-tip for using RxJava 1.x to observe on the UI Thread.</p>
 
-<p><img src="https://imgur.com/Ht7tVah.png" alt="iOS 11 Android Oreo" /></p>
+<p>In RxJava 2.x this is very easily achieved using the android scheduler:</p>
 
-<p>Designing an App Icon on an empty white page makes it difficult to see how it will look when found on the App Store or Google Play. You want your icon to stand out amongst the sea of colours and badges so that users are interested enough to take a closer look.</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">Observable</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="k">new</span> <span class="n">ObservableOnSubscribe</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">ObservableEmitter</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">observableEmitter</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">observableEmitter</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">observableEmitter</span><span class="o">.</span><span class="na">onComplete</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">})</span>
+<span class="o">.</span><span class="na">subscribeOn</span><span class="o">(</span><span class="n">Schedulers</span><span class="o">.</span><span class="na">newThread</span><span class="o">())</span>
+<span class="o">.</span><span class="na">observeOn</span><span class="o">(</span><span class="n">AndroidSchedulers</span><span class="o">.</span><span class="na">mainThread</span><span class="o">())</span>
+<span class="o">.</span><span class="na">subscribe</span><span class="o">();</span>
+</code></pre>
+</div>
 
-<p>The following template has been designed for iOS 11 and Android O icons. App icons are stored edited as sketch symbols which automatically update on the preview templates, so you only need to change one artboard to see your changes across all devices and app stores.</p>
+<p>Here we create a new observable that returns a Boolean value when it completes. The observable subscribes on a new Thread (<code class="highlighter-rouge">Schedulers.newThread()</code>), and is observed on the main Android thread (<code class="highlighter-rouge">AndroidSchedulers.mainThread()</code>). This is a typical construction in RxJava 2.x if you need to perform actions on the UI thread after your observable has finished processing on a seperate thread, avoiding those pesky <em>Fatal signal 6 (SIGABRT)</em> errors in Android.</p>
 
-<p><a href="https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html">Download Sketch Template</a></p>
+<p>Unfortunately RxJava 1.x seemingly has no drop-in replacement for this. Of course if you’re able to, use RxJava 2.x as it is far superior to its predecessor. But if that is not an option, then a solution posted by <a href="https://stackoverflow.com/a/21256419/6136287">Zapl to StackOverflow</a> may be your answer.</p>
 
-<hr />
+<p>The idea is to create an executor that runs on the Android main loop. If you haven’t encountered executors I’d recommend <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html">getting an overview to have a better understanding of async in Java</a>.</p>
 
-<h1 id="icon-design">Icon Design</h1>
+<p>Our main thread executor will be:</p>
 
-<p><img src="https://imgur.com/txD6ora.png" alt="Icon Design" /></p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">UiThreadExecutor</span> <span class="kd">implements</span> <span class="n">Executor</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Handler</span> <span class="n">mHandler</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Handler</span><span class="o">(</span><span class="n">Looper</span><span class="o">.</span><span class="na">getMainLooper</span><span class="o">());</span>
 
-<p>The first page of the template allows you to design the Icons for Android and iOS at the maximum recommended resolution (512x512 for iOS and 1024x1024 for Android). It also includes additional sizes recommended by Apple and Google.</p>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">execute</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mHandler</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">command</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
-<p>For iOS this is quite straightforward. Size are:</p>
+<p>We can further add to this to make a true drop-in replacement for RxJava 2’s <code class="highlighter-rouge">AndroidSchedulers.mainThread()</code>:</p>
 
-<ul>
-  <li>Play Store - 512x512</li>
-  <li>xxxhdpi - 192x192</li>
-  <li>xxhdpi - 144x144</li>
-  <li>xhdpi - 96x96</li>
-  <li>hdpi - 72x72</li>
-  <li>mdpi - 48x48</li>
-</ul>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">AndroidSchedulers</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Scheduler</span> <span class="nf">mainThread</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">Schedulers</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="k">new</span> <span class="n">UIThreadExecutor</span><span class="o">())</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
 
-<p>iOS icons are a considerably more exhaustive, with different sizes for iPhone and iPad icons, including Settings Screen, Spotlight Search and Notification icons:</p>
+<p>Add these classes to your project and you’re ready to go! You can now use <code class="highlighter-rouge">AndroidSchedulers.mainThread()</code> just as you would in an RxJava 2 project.</p>
 
-<ul>
-  <li>App Store - 1024x1024</li>
-  <li>iPhone 3x - 180x180</li>
-  <li>iPhone 2x - 152x152</li>
-  <li>iPad 3x - 167x167</li>
-  <li>iPad 2x - 152x152</li>
-  <li>iPhone/iPad Settings 3x - 87x87</li>
-  <li>iPhone/iPad Settings 2x - 58x58</li>
-  <li>Spotlight - 80x80</li>
-  <li>Notifications - 40x40</li>
-</ul>
-
-<p>Its also worth noting that all iOS icons are masked as rounded-squares (NOT squircles anymore) when they are displayed on the App Store. For the large iOS icon the corner radius is 120 for dimensions 1024x1024. Scale this accordingly for other icon sizes.</p>
-
-<h1 id="app-store-previews">App Store Previews</h1>
-
-<p>The second page of the template shows previews for:</p>
-
-<ul>
-  <li>Google Play on Phone</li>
-  <li>Google Play on Web Browser</li>
-</ul>
-
-<p><img src="https://imgur.com/dRThIHy.png" alt="Google Play Previews" /></p>
-
-<ul>
-  <li>iOS App Store on Phone</li>
-  <li>iOS App Store on iTunes (desktop)</li>
-</ul>
-
-<p><img src="https://imgur.com/ek1G8Fe.png" alt="iOS App Store Previews" /></p>
-
-<p>The icons on the previous page are symbols that automatically update on the app-store previews when you make changes. You can also change the name and category on the previews to your own app.</p>
-
-<p>The example demonstrates how you might design the same icon in both Android and iOS styles, with Android favouring flat colours and long-shadows, while iOS icons typically use few shadows and colourful gradients. These are of course just guidelines that both companies frequently break with their own designs, so its important to be creative if you want to stand out.</p>
-
-<h1 id="download">Download</h1>
-
-<p>You can get the template here from Sketch App Sources:</p>
-
-<p><a href="https://www.sketchappsources.com/free-source/2806-app-icon-design-template-sketch-freebie-resource.html">Download Sketch Template</a></p>
-
-<hr />
-
-<p>—— Tom 2017.09</p>
+<p>—— Tom 2017.10</p>
 
 
                 <hr style="visibility: hidden;">
@@ -317,19 +291,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/08/30/Reverse-Proxy/" data-toggle="tooltip" data-placement="top" title="Hosting Multiple Websites on the same Server">
-                        Previous<br>
-                        <span>Hosting Multiple Websites on the same Server</span>
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="next">
                         <a href="/2017/10/03/Perfect-PageSpeed/" data-toggle="tooltip" data-placement="top" title="Getting a Perfect 100/100 Google PageSpeed Score with an S3 Static Website">
-                        Next<br>
+                        Previous<br>
                         <span>Getting a Perfect 100/100 Google PageSpeed Score with an S3 Static Website</span>
                         </a>
                     </li>
+                    
                     
                 </ul>
 
@@ -474,8 +441,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "code-base-camp";
-    var disqus_identifier = "/2017/09/20/Icon-Template";
-    var disqus_url = "http://localhost:4000/2017/09/20/Icon-Template/";
+    var disqus_identifier = "/2017/12/27/RxJava-UIThread";
+    var disqus_url = "http://localhost:4000/2017/12/27/RxJava-UIThread/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

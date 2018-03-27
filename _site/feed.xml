@@ -3,11 +3,79 @@
   <channel>
     <title>Code Base Camp</title>
     <description>Code help, tutorials, guides, tips</description>
-    <link>https://www.codebasecamp.com/</link>
-    <atom:link href="https://www.codebasecamp.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 27 Mar 2018 13:47:28 +0100</pubDate>
-    <lastBuildDate>Tue, 27 Mar 2018 13:47:28 +0100</lastBuildDate>
-    <generator>Jekyll v3.3.0</generator>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 27 Mar 2018 14:02:25 +0100</pubDate>
+    <lastBuildDate>Tue, 27 Mar 2018 14:02:25 +0100</lastBuildDate>
+    <generator>Jekyll v3.7.3</generator>
+    
+      <item>
+        <title>RxJava 1.x - How to Observe on the Main UI Thread</title>
+        <description>&lt;p&gt;This is a quick-tip for using RxJava 1.x to observe on the UI Thread.&lt;/p&gt;
+
+&lt;p&gt;In RxJava 2.x this is very easily achieved using the android scheduler:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;Observable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ObservableOnSubscribe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ObservableEmitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Boolean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;observableEmitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;observableEmitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;observableEmitter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onComplete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;subscribeOn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Schedulers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;newThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;observeOn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AndroidSchedulers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;mainThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here we create a new observable that returns a Boolean value when it completes. The observable subscribes on a new Thread (&lt;code class=&quot;highlighter-rouge&quot;&gt;Schedulers.newThread()&lt;/code&gt;), and is observed on the main Android thread (&lt;code class=&quot;highlighter-rouge&quot;&gt;AndroidSchedulers.mainThread()&lt;/code&gt;). This is a typical construction in RxJava 2.x if you need to perform actions on the UI thread after your observable has finished processing on a seperate thread, avoiding those pesky &lt;em&gt;Fatal signal 6 (SIGABRT)&lt;/em&gt; errors in Android.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately RxJava 1.x seemingly has no drop-in replacement for this. Of course if you’re able to, use RxJava 2.x as it is far superior to its predecessor. But if that is not an option, then a solution posted by &lt;a href=&quot;https://stackoverflow.com/a/21256419/6136287&quot;&gt;Zapl to StackOverflow&lt;/a&gt; may be your answer.&lt;/p&gt;
+
+&lt;p&gt;The idea is to create an executor that runs on the Android main loop. If you haven’t encountered executors I’d recommend &lt;a href=&quot;https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html&quot;&gt;getting an overview to have a better understanding of async in Java&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our main thread executor will be:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UiThreadExecutor&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Executor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Handler&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mHandler&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Looper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMainLooper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Runnable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;mHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We can further add to this to make a true drop-in replacement for RxJava 2’s &lt;code class=&quot;highlighter-rouge&quot;&gt;AndroidSchedulers.mainThread()&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AndroidSchedulers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Scheduler&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mainThread&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Schedulers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;UIThreadExecutor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Add these classes to your project and you’re ready to go! You can now use &lt;code class=&quot;highlighter-rouge&quot;&gt;AndroidSchedulers.mainThread()&lt;/code&gt; just as you would in an RxJava 2 project.&lt;/p&gt;
+
+&lt;p&gt;—— Tom 2017.10&lt;/p&gt;
+</description>
+        <pubDate>Wed, 27 Dec 2017 13:06:00 +0000</pubDate>
+        <link>http://localhost:4000/2017/12/27/RxJava-UIThread/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/12/27/RxJava-UIThread/</guid>
+        
+        <category>Android</category>
+        
+        <category>Java</category>
+        
+        <category>RxJava</category>
+        
+        <category>quick-tip</category>
+        
+        
+      </item>
     
       <item>
         <title>Getting a Perfect 100/100 Google PageSpeed Score with an S3 Static Website</title>
@@ -150,8 +218,8 @@ gzip -9 -k -f *.css
 &lt;p&gt;—— Tom 2017.10&lt;/p&gt;
 </description>
         <pubDate>Tue, 03 Oct 2017 16:16:00 +0100</pubDate>
-        <link>https://www.codebasecamp.com/2017/10/03/Perfect-PageSpeed/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/10/03/Perfect-PageSpeed/</guid>
+        <link>http://localhost:4000/2017/10/03/Perfect-PageSpeed/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/10/03/Perfect-PageSpeed/</guid>
         
         <category>Web</category>
         
@@ -242,8 +310,8 @@ gzip -9 -k -f *.css
 &lt;p&gt;—— Tom 2017.09&lt;/p&gt;
 </description>
         <pubDate>Wed, 20 Sep 2017 00:32:00 +0100</pubDate>
-        <link>https://www.codebasecamp.com/2017/09/20/Icon-Template/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/09/20/Icon-Template/</guid>
+        <link>http://localhost:4000/2017/09/20/Icon-Template/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/09/20/Icon-Template/</guid>
         
         <category>Design</category>
         
@@ -401,8 +469,8 @@ notmywebsite.com -&amp;gt; :8082
 &lt;p&gt;—— Tom 2017.08&lt;/p&gt;
 </description>
         <pubDate>Wed, 30 Aug 2017 18:08:00 +0100</pubDate>
-        <link>https://www.codebasecamp.com/2017/08/30/Reverse-Proxy/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/08/30/Reverse-Proxy/</guid>
+        <link>http://localhost:4000/2017/08/30/Reverse-Proxy/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/08/30/Reverse-Proxy/</guid>
         
         <category>Go</category>
         
@@ -501,8 +569,8 @@ touch ~/Projects/MyProject/Main.go
 &lt;p&gt;—— Tom 2017.04&lt;/p&gt;
 </description>
         <pubDate>Tue, 25 Apr 2017 17:02:00 +0100</pubDate>
-        <link>https://www.codebasecamp.com/2017/04/25/Project-Structure-Go.1/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/04/25/Project-Structure-Go.1/</guid>
+        <link>http://localhost:4000/2017/04/25/Project-Structure-Go.1/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/04/25/Project-Structure-Go.1/</guid>
         
         <category>Go</category>
         
@@ -1078,8 +1146,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2017.03&lt;/p&gt;
 </description>
         <pubDate>Thu, 23 Mar 2017 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2017/03/23/React-js-Crashcourse/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/03/23/React-js-Crashcourse/</guid>
+        <link>http://localhost:4000/2017/03/23/React-js-Crashcourse/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/03/23/React-js-Crashcourse/</guid>
         
         <category>Crashcourse</category>
         
@@ -1275,8 +1343,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2017.01&lt;/p&gt;
 </description>
         <pubDate>Sun, 08 Jan 2017 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2017/01/08/Working-With-Classes-in-Javascript/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2017/01/08/Working-With-Classes-in-Javascript/</guid>
+        <link>http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/01/08/Working-With-Classes-in-Javascript/</guid>
         
         <category>Javascript</category>
         
@@ -1781,8 +1849,8 @@ rdr pass inet proto tcp from any to any port 80 -&amp;gt; 127.0.0.1 port 8080
 &lt;p&gt;—— Tom 2015.11&lt;/p&gt;
 </description>
         <pubDate>Fri, 02 Dec 2016 12:30:00 +0000</pubDate>
-        <link>https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</link>
-        <guid isPermaLink="true">https://www.codebasecamp.com/2016/12/02/Expandable-TableView/</guid>
+        <link>http://localhost:4000/2016/12/02/Expandable-TableView/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/12/02/Expandable-TableView/</guid>
         
         <category>iOS</category>
         

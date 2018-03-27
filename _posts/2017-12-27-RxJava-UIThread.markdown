@@ -2,10 +2,10 @@
 layout:     post
 title:      "RxJava 1.x - How to Observe on the Main UI Thread"
 subtitle:   "An alternative to AndroidSchedulers.mainThread() for RxJava 1.x"
-date:       2018-03-27 13:06:00
+date:       2017-12-27 13:06:00
 author:     "Tom"
 header-img: "img/2018-03-27_cover.jpg"
-header-mask: 0.5
+header-mask: 0.8
 catalog: true
 tags:
     - Android
@@ -14,7 +14,7 @@ tags:
     - quick-tip
 ---
 
-This is a quick-tip for using RxJava 1.x to observe on the UI Thread.
+This is a quick-tip for using RxJava 1.x to observe on the UI Thread. 
 
 In RxJava 2.x this is very easily achieved using the android scheduler:
 
